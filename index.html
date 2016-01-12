@@ -192,6 +192,68 @@
 
       <div class="body-wrap">
   
+    <article id="post-使用SecureCRT实时查看远程日志" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/01/12/使用SecureCRT实时查看远程日志/" class="article-date">
+  	<time datetime="2016-01-12T03:12:20.000Z" itemprop="datePublished">2016-01-12</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/12/使用SecureCRT实时查看远程日志/">使用SecureCRT实时查看远程机器日志</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#查看远程机器实时日志</p>
+<p>标签 ： 日志 SecureCRT 远程连接</p>
+<p>在开发中各端交互需要查看分析日志，而查看远程机器实时日志我觉得很不方便（PS：我还未发现好的方法），今天google了一把，发现了SecureCRT，尝试了一把，遂以记录之。</p>
+<p>###下载安装SecureCRT<br>SecureCRT是非免费软件，SecureCRT在官网上售价99.99美元，约合人民币600元，有能力者应该支持正版。<br>而像我这样想小试一下的，也有破解版<a href="http://www.waitsun.com/securecrt-7-3-3.html" title="破解版" target="_blank" rel="external">SecureCRT for Mac 7.3.3 破解版</a>。</p>
+<p>###测试连接远程机器<br>New Session创建新地址，按要求填写地址、端口、用户名和密码等相关信息，connect连接。</p>
+<p>###查看日志<br>连接远程机器后，输入命令cd到日志目录，接着输入 </p>
+<pre><code>tail -fn 30 name.log
+</code></pre><p>日志就实时显示出来了。</p>
+<p>如图：</p>
+<p><img src="http://img.blog.csdn.net/20151030111742721?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="附图"></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-hello-markdown" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
