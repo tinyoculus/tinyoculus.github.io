@@ -1,0 +1,796 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="java 抓包  packet" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="『Wireshark』是一款优秀的开源的网络数据包分析软件，如果你用过你就一定会懂的。然而wireshark虽然对网络数据包拥有强大的分析能力，但是对于要实时对数据包进行分析处理就不那么容易了，于是乎为了完成项目要求，起早摸黑的开始了Google探索网络数据分析之路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="摸索着用java抓包">
+<meta property="og:url" content="https://tinyoculus.github.io/2016/03/04/摸索着用java抓包/index.html">
+<meta property="og:site_name" content="TinyOculus's Blog">
+<meta property="og:description" content="『Wireshark』是一款优秀的开源的网络数据包分析软件，如果你用过你就一定会懂的。然而wireshark虽然对网络数据包拥有强大的分析能力，但是对于要实时对数据包进行分析处理就不那么容易了，于是乎为了完成项目要求，起早摸黑的开始了Google探索网络数据分析之路。">
+<meta property="og:updated_time" content="2016-03-04T15:11:00.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="摸索着用java抓包">
+<meta name="twitter:description" content="『Wireshark』是一款优秀的开源的网络数据包分析软件，如果你用过你就一定会懂的。然而wireshark虽然对网络数据包拥有强大的分析能力，但是对于要实时对数据包进行分析处理就不那么容易了，于是乎为了完成项目要求，起早摸黑的开始了Google探索网络数据分析之路。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 摸索着用java抓包 | TinyOculus's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74536326-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TinyOculus's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不忘初心，谦恭而行</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                摸索着用java抓包
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-03-04T21:58:30+08:00" content="2016-03-04">
+              2016-03-04
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/java/" itemprop="url" rel="index">
+                    <span itemprop="name">java</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/03/04/摸索着用java抓包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/04/摸索着用java抓包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>『<a href="https://www.wireshark.org/" target="_blank" rel="external">Wireshark</a>』是一款优秀的开源的网络数据包分析软件，如果你用过你就一定会懂的。然而wireshark虽然对网络数据包拥有强大的分析能力，但是对于要实时对数据包进行分析处理就不那么容易了，于是乎为了完成项目要求，起早摸黑的开始了Google探索网络数据分析之路。</p>
+<a id="more"></a>
+<p>Google了许久发现怎么离不开都离不开『<a href="https://github.com/the-tcpdump-group/libpcap" target="_blank" rel="external">ibpcap</a>』一个神奇的lib，让对C一直充满敬意而又一窍不通的我来说，有种很想去尝试的冲动。最后在网上拷了段代码跑了下，感觉还是蛮爽的因为我没有用tcpdump，作为C的入门之作，我决定还是把代码贴出来。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//netpkghdr.h</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">ifndef</span> _NET_PKG_HDR_H_</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> _NET_PKG_HDR_H_</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> ETHERTYPE_IP <span class="number">0x0008</span>        <span class="comment">// IP协议  (0x0800的网络序)</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> TCP_PROTOCAL <span class="number">0x0006</span>        <span class="comment">// TCP协议 (0x0600的网络序)</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> BUFF_MAX_LEN <span class="number">0x10000</span>       <span class="comment">// 最大包长</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span> pack(push, <span class="number">1</span>)</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ethernet header</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> ether_header</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span>  dst[<span class="number">6</span>];         <span class="comment">// 目标MAC</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span>  src[<span class="number">6</span>];         <span class="comment">// 源MAC</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> type;           <span class="comment">// 上层协议标识</span></span><br><span class="line">&#125; eth_hdr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ipv4 address</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> ip_address</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span> b1, b2, b3, b4;</span><br><span class="line">&#125; ip_addr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ipv4 header</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> ip_header</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span>  ver_ihl;        <span class="comment">// 版本信息(4)头长度(4)</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span>  tos;            <span class="comment">// 服务类型</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> len;            <span class="comment">// 数据包长度</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> id;             <span class="comment">// 数据包标识</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> slice;          <span class="comment">// 片偏移</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span>  ttl;            <span class="comment">// ttl</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span>  proto;          <span class="comment">// 协议</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sum;            <span class="comment">// 校验和</span></span><br><span class="line">    ip_addr        saddr;          <span class="comment">// 源IP</span></span><br><span class="line">    ip_addr        daddr;          <span class="comment">// 目标IP</span></span><br><span class="line">&#125; ip_hdr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// tcp header</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> tcp_header</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sport;          <span class="comment">// 源端口</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> dport;          <span class="comment">// 目标端口</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>   seq;            <span class="comment">// 序列号</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span>   ack;            <span class="comment">// 应答</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> len_code;       <span class="comment">// TCP头长度(4)保留(6)标志(6)</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> window;         <span class="comment">// 窗口大小</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sum;            <span class="comment">// 校验和</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> urp;            <span class="comment">// 紧急数据偏移</span></span><br><span class="line">&#125; tcp_hdr;</span><br><span class="line"></span><br><span class="line"><span class="comment">// udp header</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> udp_header</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sport;          <span class="comment">// 源端口</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> dport;          <span class="comment">// 目标端口</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> len;            <span class="comment">// 包长</span></span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> sum;            <span class="comment">// 校验和</span></span><br><span class="line">&#125; udp_hdr;</span><br><span class="line"></span><br><span class="line"><span class="preprocessor">#<span class="keyword">pragma</span> pack(pop)</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span> <span class="comment">/* _NET_PKG_HDR_H_ */</span></span></span><br></pre></td></tr></table></figure>
+<p>capture.c<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;pcap.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">"netpkghdr.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">unsigned</span> <span class="keyword">char</span> g_buffer[BUFF_MAX_LEN] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">pcap_t</span>* get_pcap( <span class="keyword">const</span> <span class="keyword">char</span>* name )</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">pcap_if_t</span>* ifs;</span><br><span class="line">    <span class="keyword">pcap_if_t</span>* d;</span><br><span class="line">    <span class="keyword">pcap_t</span>* pcap;</span><br><span class="line">    <span class="keyword">char</span> errbuff[PCAP_ERRBUF_SIZE];</span><br><span class="line">    <span class="keyword">char</span> *device = <span class="string">"eth0"</span>;</span><br><span class="line">    <span class="keyword">char</span> errbuf[<span class="number">1024</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ((device = pcap_lookupdev(errbuf)) == <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        perror(errbuf);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"device: %s\n"</span>, device);</span><br><span class="line"></span><br><span class="line">    pcap = pcap_open_live( device, \</span><br><span class="line">                           BUFF_MAX_LEN, \</span><br><span class="line">                           <span class="number">0</span>, \</span><br><span class="line">                           <span class="number">3000</span>, \</span><br><span class="line">                           errbuff );</span><br><span class="line"></span><br><span class="line">    pcap_freealldevs( ifs );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( pcap == <span class="literal">NULL</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>( <span class="built_in">stderr</span>, <span class="string">"pcap_open_live [%s]\n"</span>, errbuff );</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> pcap;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> rc;</span><br><span class="line">    <span class="keyword">pcap_t</span>* pcap;</span><br><span class="line">    <span class="keyword">struct</span> bpf_program bpf;</span><br><span class="line">    <span class="keyword">struct</span> pcap_pkthdr* header;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">char</span>* pkt_data;</span><br><span class="line"></span><br><span class="line">    eth_hdr* eth;</span><br><span class="line"></span><br><span class="line">    ip_hdr* ip;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> ip_hdr_len;</span><br><span class="line"></span><br><span class="line">    tcp_hdr* tcp;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> tcp_hdr_len;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">short</span> tcp_data_len;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">char</span>* tcp_pkt_data;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( ( pcap = get_pcap( <span class="string">"eth0"</span> ) ) == <span class="literal">NULL</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>( <span class="string">"**********************************************\n\n"</span> );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( pcap_compile( pcap, &amp;bpf, <span class="string">"tcp"</span>, <span class="number">1</span>, <span class="number">0</span> ) &lt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>( <span class="built_in">stderr</span>, <span class="string">"pcap_compile error\n"</span> );</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> ( pcap_setfilter( pcap, &amp;bpf ) &lt; <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">fprintf</span>( <span class="built_in">stderr</span>, <span class="string">"pcap_setfilter\n"</span> );</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> ( ( rc = pcap_next_ex( pcap, &amp;header, &amp;pkt_data ) ) &gt;= <span class="number">0</span> )</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> ( rc == <span class="number">0</span> )</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        eth = ( eth_hdr* )pkt_data;</span><br><span class="line">        ip = ( ip_hdr* )( eth + <span class="number">1</span> );</span><br><span class="line">        ip_hdr_len = ( ( ip-&gt;ver_ihl &amp; <span class="number">0x0F</span> ) &lt;&lt; <span class="number">2</span> );</span><br><span class="line"></span><br><span class="line">        tcp = ( tcp_hdr* )( pkt_data + <span class="keyword">sizeof</span>( eth_hdr ) + ip_hdr_len );</span><br><span class="line">        tcp_hdr_len = ( ( tcp-&gt;len_code &amp; <span class="number">0x00F0</span> ) &gt;&gt; <span class="number">2</span> );</span><br><span class="line">        tcp_data_len = header-&gt;len - <span class="keyword">sizeof</span>( eth_hdr ) - ip_hdr_len - tcp_hdr_len;</span><br><span class="line">        tcp_pkt_data = ( <span class="keyword">unsigned</span> <span class="keyword">char</span>* )tcp + tcp_hdr_len;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">/*        if ( tcp_data_len &lt; 3 || \</span><br><span class="line">                        ( strncmp( ( char* )tcp_pkt_data, "GET", 3 ) &amp;&amp; \</span><br><span class="line">                          strncmp( ( char* )tcp_pkt_data, "POST", 4 ) &amp;&amp; \</span><br><span class="line">                          strncmp( ( char* )tcp_pkt_data, "HTTP/1.1", 8 ) ) )</span><br><span class="line">                &#123;</span><br><span class="line">                    continue;</span><br><span class="line">                &#125;*/</span></span><br><span class="line"></span><br><span class="line">        <span class="built_in">memcpy</span>( g_buffer, tcp_pkt_data, tcp_data_len );</span><br><span class="line">        g_buffer[tcp_data_len] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">" MAC : %02X-%02X-%02X-%02X-%02X-%02X"</span>, eth-&gt;src[<span class="number">0</span>], eth-&gt;src[<span class="number">1</span>], eth-&gt;src[<span class="number">2</span>], eth-&gt;src[<span class="number">3</span>], eth-&gt;src[<span class="number">4</span>], eth-&gt;src[<span class="number">5</span>]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">" --&gt; %02X-%02X-%02X-%02X-%02X-%02X\n"</span>, eth-&gt;dst[<span class="number">0</span>], eth-&gt;dst[<span class="number">1</span>], eth-&gt;dst[<span class="number">2</span>], eth-&gt;dst[<span class="number">3</span>], eth-&gt;dst[<span class="number">4</span>], eth-&gt;dst[<span class="number">5</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">" IP  : %d.%d.%d.%d:%d"</span>, ip-&gt;saddr.b1, ip-&gt;saddr.b2, ip-&gt;saddr.b3, ip-&gt;saddr.b4, ntohs(tcp-&gt;sport));</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">" --&gt; %d.%d.%d.%d:%d\n"</span>, ip-&gt;daddr.b1, ip-&gt;daddr.b2, ip-&gt;daddr.b3, ip-&gt;daddr.b4, ntohs(tcp-&gt;dport));</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">" 长度: %d\n\n Hex:\n"</span>, header-&gt;len);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//显示数据帧内容</span></span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; (<span class="keyword">int</span>)header-&gt;len; ++i)  &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">" %02x"</span>, pkt_data[i]);</span><br><span class="line">            <span class="keyword">if</span> ( (i + <span class="number">1</span>) % <span class="number">16</span> == <span class="number">0</span> )</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">printf</span>( <span class="string">"\n\n"</span> );</span><br><span class="line">        <span class="built_in">printf</span>( <span class="string">"%s\n"</span>, ( <span class="keyword">char</span>* )g_buffer );</span><br><span class="line">        <span class="built_in">printf</span>( <span class="string">"**********************************************\n\n"</span> );</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    pcap_close( pcap );</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>作为一个菜鸟看到程序跑起来，小激动还是少不了的。<br>但是我的C实在是连门都没入啊，后面你让我这个Java菜鸟怎么办！哭完之后，还是Google翻，Github搜，继续我的探索之旅，Jpcap，JNetpcap先后出现，定眼一看，零好几年的，而且许久没有维护了，没有办法，想用但有点瘆，只好安慰自己不要放弃，一个一个试，后来发现『<a href="https://github.com/mgodave/Jpcap" target="_blank" rel="external">Jpcap: A Java wrapper around libpcap</a>』这个相对简单，但是貌似好多包都抓不到，继续哭。</p>
+<p>泪是流不完的，事总是要做的。</p>
+<p>Github作为全球最大的同性交友网站有一种神奇魔力，因为他总会给你惊喜，『<a href="https://github.com/kaitoy/pcap4j" target="_blank" rel="external">pcap4j</a>』就是我的新发现，日本人的作品，日语0级英语1级的我，不断告诫自己，要想上就得推到。</p>
+<p>伙伴们，别打扰我，我在积蓄力量，上完了再和大家分享……</p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag">#java</a>
+          
+            <a href="/tags/抓包/" rel="tag">#抓包</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/03/04/网络收藏夹/" rel="next" title="网络收藏夹">
+                <i class="fa fa-chevron-left"></i> 网络收藏夹
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/03/04/摸索着用java抓包/"
+     data-title="摸索着用java抓包"
+     data-content=""
+     data-url="https://tinyoculus.github.io/2016/03/04/摸索着用java抓包/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/03/04/摸索着用java抓包/"
+           data-title="摸索着用java抓包" data-url="https://tinyoculus.github.io/2016/03/04/摸索着用java抓包/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tiny-photo.jpg"
+               alt="TinyOculus" />
+          <p class="site-author-name" itemprop="name">TinyOculus</p>
+          <p class="site-description motion-element" itemprop="description">Walk steps step by step</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tinyoculus" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+
+  <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TinyOculus</span> 
+
+  <div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+</div>
+
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tinyoculus"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>
