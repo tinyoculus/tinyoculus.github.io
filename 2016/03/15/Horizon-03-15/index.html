@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="SecureCRT," />
+  <meta name="keywords" content="tinyoculus, blog" />
 
 
 
@@ -57,17 +57,17 @@
 
 
 
-<meta name="description" content="为了能在开发中各端交互需要查看分析日志，而查看远程机器实时日志我觉得很不方便（PS：我还未发现好的方法），在google大海里发现一枚SecureCRT奇物，试用之，感觉甚好，遂以记录之。">
+<meta name="description" content="静观风云变">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SecureCRT学习">
-<meta property="og:url" content="https://tinyoculus.github.io/2016/01/12/使用SecureCRT实时查看远程日志/index.html">
+<meta property="og:title" content="Horizon 03.15">
+<meta property="og:url" content="https://tinyoculus.github.io/2016/03/15/Horizon-03-15/index.html">
 <meta property="og:site_name" content="TinyOculus's Blog">
-<meta property="og:description" content="为了能在开发中各端交互需要查看分析日志，而查看远程机器实时日志我觉得很不方便（PS：我还未发现好的方法），在google大海里发现一枚SecureCRT奇物，试用之，感觉甚好，遂以记录之。">
-<meta property="og:image" content="http://img.blog.csdn.net/20151030111742721?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center">
-<meta property="og:updated_time" content="2016-03-02T01:23:47.000Z">
+<meta property="og:description" content="静观风云变">
+<meta property="og:image" content="http://alaris.dyndns.hu/content/skye.jpg">
+<meta property="og:updated_time" content="2016-03-15T08:40:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SecureCRT学习">
-<meta name="twitter:description" content="为了能在开发中各端交互需要查看分析日志，而查看远程机器实时日志我觉得很不方便（PS：我还未发现好的方法），在google大海里发现一枚SecureCRT奇物，试用之，感觉甚好，遂以记录之。">
+<meta name="twitter:title" content="Horizon 03.15">
+<meta name="twitter:description" content="静观风云变">
 
 
 
@@ -85,7 +85,7 @@
   };
 </script>
 
-  <title> SecureCRT学习 | TinyOculus's Blog </title>
+  <title> Horizon 03.15 | TinyOculus's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +224,7 @@
             
             
               
-                SecureCRT学习
+                Horizon 03.15
               
             
           </h1>
@@ -236,8 +236,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-01-12T11:12:20+08:00" content="2016-01-12">
-              2016-01-12
+            <time itemprop="dateCreated" datetime="2016-03-15T16:36:37+08:00" content="2016-03-15">
+              2016-03-15
             </time>
           </span>
 
@@ -247,8 +247,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/01/12/使用SecureCRT实时查看远程日志/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/01/12/使用SecureCRT实时查看远程日志/" itemprop="commentsCount"></span>
+                <a href="/2016/03/15/Horizon-03-15/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/15/Horizon-03-15/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -269,43 +269,26 @@
       
 
       
-        <p>为了能在开发中各端交互需要查看分析日志，而查看远程机器实时日志我觉得很不方便（PS：我还未发现好的方法），在google大海里发现一枚SecureCRT奇物，试用之，感觉甚好，遂以记录之。</p>
-<a id="more"></a>
-<h2 id="u4E0B_u8F7D_u5B89_u88C5SecureCRT"><a href="#u4E0B_u8F7D_u5B89_u88C5SecureCRT" class="headerlink" title="下载安装SecureCRT"></a>下载安装SecureCRT</h2><p>SecureCRT是非免费软件，SecureCRT在官网上售价99.99美元，约合人民币600元，有能力者应该支持正版。<br>而像我这样想小试一下的，也有破解版<a href="http://www.waitsun.com/securecrt-7-3-3.html" title="破解版" target="_blank" rel="external">SecureCRT for Mac 7.3.3 破解版</a>。</p>
-<h2 id="u6D4B_u8BD5_u8FDE_u63A5_u8FDC_u7A0B_u673A_u5668"><a href="#u6D4B_u8BD5_u8FDE_u63A5_u8FDC_u7A0B_u673A_u5668" class="headerlink" title="测试连接远程机器"></a>测试连接远程机器</h2><p>New Session创建新地址，按要求填写地址、端口、用户名和密码等相关信息，connect连接。</p>
-<h2 id="u67E5_u770B_u65E5_u5FD7"><a href="#u67E5_u770B_u65E5_u5FD7" class="headerlink" title="查看日志"></a>查看日志</h2><p>连接远程机器后，输入命令cd到日志目录，接着输入 </p>
-<pre><code>tail -fn 30 name.log
-</code></pre><p>日志就实时显示出来了。</p>
-<p>如图：</p>
-<p><img src="http://img.blog.csdn.net/20151030111742721?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQv/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" alt="附图"></p>
+        <p>静观风云变</p>
+<p><img src="http://alaris.dyndns.hu/content/skye.jpg" alt=""></p>
 
       
     </div>
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/SecureCRT/" rel="tag">#SecureCRT</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/01/11/hello-markdown/" rel="next" title="hello Markdown">
-                <i class="fa fa-chevron-left"></i> hello Markdown
+              <a href="/2016/03/08/Horizon-03-08/" rel="next" title="Horizon 03.08">
+                <i class="fa fa-chevron-left"></i> Horizon 03.08
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/01/20/maven学习/" rel="prev" title="maven学习">
-                maven学习 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -320,10 +303,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/01/12/使用SecureCRT实时查看远程日志/"
-     data-title="SecureCRT学习"
+        <div class="ds-share flat" data-thread-key="2016/03/15/Horizon-03-15/"
+     data-title="Horizon 03.15"
      data-content=""
-     data-url="https://tinyoculus.github.io/2016/01/12/使用SecureCRT实时查看远程日志/">
+     data-url="https://tinyoculus.github.io/2016/03/15/Horizon-03-15/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -350,8 +333,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/01/12/使用SecureCRT实时查看远程日志/"
-           data-title="SecureCRT学习" data-url="https://tinyoculus.github.io/2016/01/12/使用SecureCRT实时查看远程日志/">
+      <div class="ds-thread" data-thread-key="2016/03/15/Horizon-03-15/"
+           data-title="Horizon 03.15" data-url="https://tinyoculus.github.io/2016/03/15/Horizon-03-15/">
       </div>
     
   </div>
@@ -456,7 +439,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u4E0B_u8F7D_u5B89_u88C5SecureCRT"><span class="nav-number">1.</span> <span class="nav-text">下载安装SecureCRT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6D4B_u8BD5_u8FDE_u63A5_u8FDC_u7A0B_u673A_u5668"><span class="nav-number">2.</span> <span class="nav-text">测试连接远程机器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u67E5_u770B_u65E5_u5FD7"><span class="nav-number">3.</span> <span class="nav-text">查看日志</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
