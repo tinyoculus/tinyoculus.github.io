@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="星夜" />
+  <meta name="keywords" content="nexus私服 maven CentOS" />
 
 
 
@@ -57,17 +57,25 @@
 
 
 
-<meta name="description" content="星夜寻航">
+<meta name="description" content="系统CentOS 6.x：
+从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下
+解压，并且制作软链接：
+123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Horizon 03.08">
-<meta property="og:url" content="https://tinyoculus.github.io/2016/03/08/Horizon-03-08/index.html">
+<meta property="og:title" content="CentOS 安装nexus私服">
+<meta property="og:url" content="https://tinyoculus.github.io/2016/04/09/CentOS-安装nexus私服/index.html">
 <meta property="og:site_name" content="TinyOculus's Blog">
-<meta property="og:description" content="星夜寻航">
-<meta property="og:image" content="https://photo.tuchong.com/374683/f/13245291.jpg">
-<meta property="og:updated_time" content="2016-03-08T01:37:05.000Z">
+<meta property="og:description" content="系统CentOS 6.x：
+从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下
+解压，并且制作软链接：
+123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
+<meta property="og:updated_time" content="2016-04-09T03:04:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Horizon 03.08">
-<meta name="twitter:description" content="星夜寻航">
+<meta name="twitter:title" content="CentOS 安装nexus私服">
+<meta name="twitter:description" content="系统CentOS 6.x：
+从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下
+解压，并且制作软链接：
+123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
 
 
 
@@ -85,7 +93,7 @@
   };
 </script>
 
-  <title> Horizon 03.08 | TinyOculus's Blog </title>
+  <title> CentOS 安装nexus私服 | TinyOculus's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -224,7 +232,7 @@
             
             
               
-                Horizon 03.08
+                CentOS 安装nexus私服
               
             
           </h1>
@@ -236,8 +244,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-08T09:33:41+08:00" content="2016-03-08">
-              2016-03-08
+            <time itemprop="dateCreated" datetime="2016-04-09T10:37:00+08:00" content="2016-04-09">
+              2016-04-09
             </time>
           </span>
 
@@ -250,8 +258,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/视界/" itemprop="url" rel="index">
-                    <span itemprop="name">视界</span>
+                  <a href="/categories/maven/" itemprop="url" rel="index">
+                    <span itemprop="name">maven</span>
                   </a>
                 </span>
 
@@ -266,8 +274,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/03/08/Horizon-03-08/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/08/Horizon-03-08/" itemprop="commentsCount"></span>
+                <a href="/2016/04/09/CentOS-安装nexus私服/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/09/CentOS-安装nexus私服/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -288,8 +296,38 @@
       
 
       
-        <p>星夜寻航</p>
-<p><img src="https://photo.tuchong.com/374683/f/13245291.jpg" alt=""></p>
+        <h2 id="u7CFB_u7EDFCentOS_6-x_uFF1A"><a href="#u7CFB_u7EDFCentOS_6-x_uFF1A" class="headerlink" title="系统CentOS 6.x："></a>系统CentOS 6.x：</h2><ul>
+<li>从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下</li>
+<li><p>解压，并且制作软链接：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz</span><br><span class="line">tar zxvf nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz  </span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span> /usr/<span class="built_in">local</span>/nexus</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>nexus内置以Jetty启动，默认端口为8081，如果冲突了要修改端口，编辑 conf/nexus.properties 文件，找到 application-port=8081 这一行，改为 application-port=9037</p>
+</li>
+<li><p>因为我是以root身份操作系统的，故要修改 bin/nexus 文件，找到 #RUN_AS_USER= 这一行，在下面添加 RUN_AS_USER=root</p>
+</li>
+<li>修改 bin/jsw/conf/wrapper.conf 文件，改变java命令路径，找到 wrapper.java.command=java 这一行，改为 wrapper.java.command=/usr/local/jdk/bin/java（具体跟你自己的jdk位置有关）(PS:系统配置了java环境变量可以不用修改此项)。</li>
+<li><p>制作服务。直接通过软链接即可：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/nexus/bin/nexus /etc/init.d/nexus</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>至此，nexus做成服务并开机启动就大功告成了。</p>
+</li>
+</ul>
+<h2 id="u542F_u52A8nexus_u79C1_u670D"><a href="#u542F_u52A8nexus_u79C1_u670D" class="headerlink" title="启动nexus私服"></a>启动nexus私服</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">./nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>/bin/nexus start</span><br><span class="line"><span class="comment"># 查看状态</span></span><br><span class="line">./nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>/bin/nexus status</span><br></pre></td></tr></table></figure>
+<h2 id="u672C_u5730_u9879_u76EE_u914D_u7F6E_u5F15_u7528_u79C1_u670D"><a href="#u672C_u5730_u9879_u76EE_u914D_u7F6E_u5F15_u7528_u79C1_u670D" class="headerlink" title="本地项目配置引用私服"></a>本地项目配置引用私服</h2><ul>
+<li>在项目的 pom.xml 中配置私库地址，pom.xml 的下面添加：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 私有仓库 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">repositories</span>&gt;</span>  </span><br><span class="line">    <span class="tag">&lt;<span class="title">repository</span>&gt;</span>  </span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>public<span class="tag">&lt;/<span class="title">id</span>&gt;</span>  <span class="comment">&lt;!--这个ID需要与你的组group ID一致--&gt;</span> </span><br><span class="line">        <span class="tag">&lt;<span class="title">name</span>&gt;</span>Public Repository<span class="tag">&lt;/<span class="title">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://192.168.19.130:8081/nexus/content/groups/public<span class="tag">&lt;/<span class="title">url</span>&gt;</span>   </span><br><span class="line">    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="title">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="u6253_u5305_u53D1_u5E03"><a href="#u6253_u5305_u53D1_u5E03" class="headerlink" title="打包发布"></a>打包发布</h2><ul>
+<li><p>在项目的 pom.xml 中配置私库地址，pom.xml 的下面添加：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 打包发布 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">distributionManagement</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">repository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span><span class="comment">&lt;!--这个ID需要与你的release仓库的Repository ID一致--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://192.168.19.130:8081/nexus/content/repositories/releases<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">repository</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">id</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span><span class="comment">&lt;!--这个ID需要与你的snapshots仓库的Repository ID一致--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">url</span>&gt;</span>http://192.168.19.130:8081/nexus/content/repositories/snapshots<span class="tag">&lt;/<span class="title">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">snapshotRepository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">distributionManagement</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在 maven 的 settings.xml 中配置 server 账户信息：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">servers</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">id</span>&gt;</span>releases<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">username</span>&gt;</span>deployment<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">password</span>&gt;</span>dev123<span class="tag">&lt;/<span class="title">password</span>&gt;</span><span class="comment">&lt;!--这个密码就是你设置的密码--&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="title">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">id</span>&gt;</span>snapshots<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">username</span>&gt;</span>deployment<span class="tag">&lt;/<span class="title">username</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="title">password</span>&gt;</span>dev123<span class="tag">&lt;/<span class="title">password</span>&gt;</span><span class="comment">&lt;!--这个密码就是你设置的密码--&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="title">server</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">servers</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置完成后使用 <code>bash mvn deploy</code> 即可发布到nexus私服中。</p>
+</li>
+</ul>
+<h4 id="u9700_u8981_u8BF4_u660E_u4E00_u70B9_uFF1A"><a href="#u9700_u8981_u8BF4_u660E_u4E00_u70B9_uFF1A" class="headerlink" title="需要说明一点："></a>需要说明一点：</h4><p><em>当pom.xml中同时配置了releases仓库和snapshots仓库时。<br>pom.xml文件开头的版本配置1.0.0-SNAPSHOT为build到snapshots库，<br>pom.xml文件开头的版本配置1.0.0 (不带-SNAPSHOT) 的会build到releases库，<br>如果只配置了releases库而版本号写的是带-SNAPSHOT的，build到最后一步会报400错误，因为它找不到对应的库。</em></p>
 
       
     </div>
@@ -298,7 +336,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/风景/" rel="tag">#风景</a>
+            <a href="/tags/maven/" rel="tag">#maven</a>
+          
+            <a href="/tags/nexus私服/" rel="tag">#nexus私服</a>
           
         </div>
       
@@ -307,17 +347,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/03/05/Horizon-03-05/" rel="next" title="Horizon 03.05">
-                <i class="fa fa-chevron-left"></i> Horizon 03.05
+              <a href="/2016/03/22/Horizon-03-21/" rel="next" title="Horizon 03.21">
+                <i class="fa fa-chevron-left"></i> Horizon 03.21
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/03/15/Horizon-03-15/" rel="prev" title="Horizon 03.15">
-                Horizon 03.15 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -332,10 +368,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/03/08/Horizon-03-08/"
-     data-title="Horizon 03.08"
+        <div class="ds-share flat" data-thread-key="2016/04/09/CentOS-安装nexus私服/"
+     data-title="CentOS 安装nexus私服"
      data-content=""
-     data-url="https://tinyoculus.github.io/2016/03/08/Horizon-03-08/">
+     data-url="https://tinyoculus.github.io/2016/04/09/CentOS-安装nexus私服/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -362,8 +398,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/03/08/Horizon-03-08/"
-           data-title="Horizon 03.08" data-url="https://tinyoculus.github.io/2016/03/08/Horizon-03-08/">
+      <div class="ds-thread" data-thread-key="2016/04/09/CentOS-安装nexus私服/"
+           data-title="CentOS 安装nexus私服" data-url="https://tinyoculus.github.io/2016/04/09/CentOS-安装nexus私服/">
       </div>
     
   </div>
@@ -468,7 +504,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u7CFB_u7EDFCentOS_6-x_uFF1A"><span class="nav-number">1.</span> <span class="nav-text">系统CentOS 6.x：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u542F_u52A8nexus_u79C1_u670D"><span class="nav-number">2.</span> <span class="nav-text">启动nexus私服</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u672C_u5730_u9879_u76EE_u914D_u7F6E_u5F15_u7528_u79C1_u670D"><span class="nav-number">3.</span> <span class="nav-text">本地项目配置引用私服</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u6253_u5305_u53D1_u5E03"><span class="nav-number">4.</span> <span class="nav-text">打包发布</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#u9700_u8981_u8BF4_u660E_u4E00_u70B9_uFF1A"><span class="nav-number">4.0.1.</span> <span class="nav-text">需要说明一点：</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
