@@ -59,23 +59,20 @@
 
 <meta name="description" content="系统CentOS 6.x：
 从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下
-解压，并且制作软链接：
-123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
+解压，并且制作软链接：123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CentOS 安装nexus私服">
 <meta property="og:url" content="https://tinyoculus.github.io/2016/04/09/CentOS-安装nexus私服/index.html">
 <meta property="og:site_name" content="TinyOculus's Blog">
 <meta property="og:description" content="系统CentOS 6.x：
 从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下
-解压，并且制作软链接：
-123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
-<meta property="og:updated_time" content="2016-04-09T03:04:01.000Z">
+解压，并且制作软链接：123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
+<meta property="og:updated_time" content="2016-04-13T06:58:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CentOS 安装nexus私服">
 <meta name="twitter:description" content="系统CentOS 6.x：
 从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下
-解压，并且制作软链接：
-123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
+解压，并且制作软链接：123wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gztar zxvf">
 
 
 
@@ -298,9 +295,11 @@
       
         <h2 id="u7CFB_u7EDFCentOS_6-x_uFF1A"><a href="#u7CFB_u7EDFCentOS_6-x_uFF1A" class="headerlink" title="系统CentOS 6.x："></a>系统CentOS 6.x：</h2><ul>
 <li>从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下</li>
-<li><p>解压，并且制作软链接：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz</span><br><span class="line">tar zxvf nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz  </span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span> /usr/<span class="built_in">local</span>/nexus</span><br></pre></td></tr></table></figure>
+<li>解压，并且制作软链接：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz</span><br><span class="line">tar zxvf nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz  </span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span> /usr/<span class="built_in">local</span>/nexus</span><br></pre></td></tr></table></figure>
 </li>
+</ul>
+<a id="more"></a>
+<ul>
 <li><p>nexus内置以Jetty启动，默认端口为8081，如果冲突了要修改端口，编辑 conf/nexus.properties 文件，找到 application-port=8081 这一行，改为 application-port=9037</p>
 </li>
 <li><p>因为我是以root身份操作系统的，故要修改 bin/nexus 文件，找到 #RUN_AS_USER= 这一行，在下面添加 RUN_AS_USER=root</p>
