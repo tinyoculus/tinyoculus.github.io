@@ -58,21 +58,18 @@
 
 
 <meta name="description" content="编译和安装Tengine123./configuremakesudo make install
-Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。
-configure脚本的选项大部分的选项跟Nginx是兼容的。下面列出的都是Tengine特有的选项。如果你想查看Tengine支持的所有选项，你可以运行’./configure –hel">
+Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="测试nginx反向代理">
 <meta property="og:url" content="https://tinyoculus.github.io/2016/04/22/测试nginx反向代理/index.html">
 <meta property="og:site_name" content="TinyOculus's Blog">
 <meta property="og:description" content="编译和安装Tengine123./configuremakesudo make install
-Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。
-configure脚本的选项大部分的选项跟Nginx是兼容的。下面列出的都是Tengine特有的选项。如果你想查看Tengine支持的所有选项，你可以运行’./configure –hel">
-<meta property="og:updated_time" content="2016-04-22T08:35:13.000Z">
+Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。">
+<meta property="og:updated_time" content="2016-04-22T08:37:08.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试nginx反向代理">
 <meta name="twitter:description" content="编译和安装Tengine123./configuremakesudo make install
-Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。
-configure脚本的选项大部分的选项跟Nginx是兼容的。下面列出的都是Tengine特有的选项。如果你想查看Tengine支持的所有选项，你可以运行’./configure –hel">
+Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。">
 
 
 
@@ -295,6 +292,7 @@ configure脚本的选项大部分的选项跟Nginx是兼容的。下面列出的
       
         <h1 id="u7F16_u8BD1_u548C_u5B89_u88C5Tengine"><a href="#u7F16_u8BD1_u548C_u5B89_u88C5Tengine" class="headerlink" title="编译和安装Tengine"></a>编译和安装Tengine</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
 <p>Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。</p>
+<a id="more"></a>
 <h2 id="configure_u811A_u672C_u7684_u9009_u9879"><a href="#configure_u811A_u672C_u7684_u9009_u9879" class="headerlink" title="configure脚本的选项"></a>configure脚本的选项</h2><p>大部分的选项跟Nginx是兼容的。下面列出的都是Tengine特有的选项。如果你想查看Tengine支持的所有选项，你可以运行’./configure –help’命令来获取帮助。<br>–dso-path<br>设置DSO模块的安装路径。<br>–dso-tool-path<br>设置dso_tool脚本本身的安装路径。<br>–without-dso<br>关闭动态加载模块的功能。<br>–with-jemalloc<br>让Tengine链接jemalloc库，运行时用jemalloc来分配和释放内存。<br>–with-jemalloc=path<br>设置jemalloc库的源代码路径，Tengine可以静态编译和链接该库。</p>
 <h2 id="make_u7684_u76EE_u6807_u9009_u9879"><a href="#make_u7684_u76EE_u6807_u9009_u9879" class="headerlink" title="make的目标选项"></a>make的目标选项</h2><p>大部分的目标选项跟Nginx是兼容的。下面列出的是Tengine特有的选项。<br>make test<br>运行Tengine的测试用例。你首先需要安装perl来运行这个指令。<br>make dso_install<br>将动态模块的so文件拷贝到目标目录。这个目录可以通过’–dso-path’设置。默认是在Tengine安装目录下面的modules目录。</p>
 <h2 id="u7B80_u5355_u64CD_u4F5C"><a href="#u7B80_u5355_u64CD_u4F5C" class="headerlink" title="简单操作"></a>简单操作</h2><p>启动 nginx: sudo nginx，访问 8080 应能看到欢迎界面</p>
