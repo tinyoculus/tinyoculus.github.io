@@ -240,6 +240,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/04/22/测试nginx反向代理/" itemprop="url">
+                  测试nginx反向代理
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-04-22T16:26:57+08:00" content="2016-04-22">
+              2016-04-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/nginx/" itemprop="url" rel="index">
+                    <span itemprop="name">nginx</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/04/22/测试nginx反向代理/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/22/测试nginx反向代理/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="u7F16_u8BD1_u548C_u5B89_u88C5Tengine"><a href="#u7F16_u8BD1_u548C_u5B89_u88C5Tengine" class="headerlink" title="编译和安装Tengine"></a>编译和安装Tengine</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<p>Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。</p>
+<h2 id="configure_u811A_u672C_u7684_u9009_u9879"><a href="#configure_u811A_u672C_u7684_u9009_u9879" class="headerlink" title="configure脚本的选项"></a>configure脚本的选项</h2><p>大部分的选项跟Nginx是兼容的。下面列出的都是Tengine特有的选项。如果你想查看Tengine支持的所有选项，你可以运行’./configure –help’命令来获取帮助。<br>–dso-path<br>设置DSO模块的安装路径。<br>–dso-tool-path<br>设置dso_tool脚本本身的安装路径。<br>–without-dso<br>关闭动态加载模块的功能。<br>–with-jemalloc<br>让Tengine链接jemalloc库，运行时用jemalloc来分配和释放内存。<br>–with-jemalloc=path<br>设置jemalloc库的源代码路径，Tengine可以静态编译和链接该库。</p>
+<h2 id="make_u7684_u76EE_u6807_u9009_u9879"><a href="#make_u7684_u76EE_u6807_u9009_u9879" class="headerlink" title="make的目标选项"></a>make的目标选项</h2><p>大部分的目标选项跟Nginx是兼容的。下面列出的是Tengine特有的选项。<br>make test<br>运行Tengine的测试用例。你首先需要安装perl来运行这个指令。<br>make dso_install<br>将动态模块的so文件拷贝到目标目录。这个目录可以通过’–dso-path’设置。默认是在Tengine安装目录下面的modules目录。</p>
+<h2 id="u7B80_u5355_u64CD_u4F5C"><a href="#u7B80_u5355_u64CD_u4F5C" class="headerlink" title="简单操作"></a>简单操作</h2><p>启动 nginx: sudo nginx，访问 8080 应能看到欢迎界面</p>
+<p>nginx -V 查看 nginx 的启动参数，配置文件的位置默认是<br>–conf-path=/usr/local/etc/nginx/nginx.conf </p>
+<p>重新加载配置|重启|停止|退出 nginx<br>    nginx -s reload|reopen|stop|quit </p>
+<h1 id="u53CD_u5411_u4EE3_u7406"><a href="#u53CD_u5411_u4EE3_u7406" class="headerlink" title="反向代理"></a>反向代理</h1><p>假设希望别人输入 localhost:8080 时直接跳转到 localhost:2014，那么在 nginx.conf 中配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">    listen <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">2014</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u8D1F_u8F7D_u5747_u8861_u52A0_u53CD_u5411_u4EE3_u7406"><a href="#u8D1F_u8F7D_u5747_u8861_u52A0_u53CD_u5411_u4EE3_u7406" class="headerlink" title="负载均衡加反向代理"></a>负载均衡加反向代理</h2><p>myapp1 是一组网页的集合，这里作为一个变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream myapp1 &#123;</span><br><span class="line">        server srv1.example.com;</span><br><span class="line">        server srv2.example.com;</span><br><span class="line">        server srv3.example.com;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://myapp1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="u6CE8_u610F_uFF1A"><a href="#u6CE8_u610F_uFF1A" class="headerlink" title="注意："></a>注意：</h2><p>location 后面的东西是一个 uri 地址，/ 的话表示根目录的请求直接跳转到 myapp1 上，当然 uri 还可以更长一些，比如 /name 之类的，具体怎么替换还要结合 proxy_pass 来处理，这里分为两种情况</p>
+<p>If the proxy_pass directive is specified with a URI, then when a request is passed to the server, the part of a normalized request URI matching the location is replaced by a URI specified in the directive:</p>
+<p>location /name/ {<br>    proxy_pass <a href="http://127.0.0.1/remote/" target="_blank" rel="external">http://127.0.0.1/remote/</a>;<br>}<br>If proxy_pass is specified without a URI, the request URI is passed to the server in the same form as sent by a client when the original request is processed, or the full normalized request URI is passed when processing the changed URI:</p>
+<p>location /some/path/ {<br>    proxy_pass <a href="http://127.0.0.1" target="_blank" rel="external">http://127.0.0.1</a>;<br>}</p>
+<h1 id="u53C2_u8003"><a href="#u53C2_u8003" class="headerlink" title="参考"></a>参考</h1><p>【<a href="http://www.cnblogs.com/xinsheng/p/4696375.html" target="_blank" rel="external">nginx 安装与反向代理测试 under MAC - SangS - 博客园</a>】</p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/04/22/Bash-Shell处理命令行参数/" itemprop="url">
                   Bash Shell处理命令行参数
                 </a>
@@ -1234,117 +1358,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/02/25/Horizon-02-25/" itemprop="url">
-                  Horizon 02.25
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-02-25T08:37:42+08:00" content="2016-02-25">
-              2016-02-25
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/视界/" itemprop="url" rel="index">
-                    <span itemprop="name">视界</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/02/25/Horizon-02-25/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/02/25/Horizon-02-25/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>一树一世界</p>
-<p><img src="http://www.allmacwallpaper.com/get/Retina-MacBook-Pro-13-inch-wallpapers/Stunted-Pine-2560x1600/7443-11.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1391,7 +1404,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">16</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1399,7 +1412,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1408,7 +1421,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
