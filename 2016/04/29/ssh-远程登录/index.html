@@ -41,7 +41,7 @@
 <link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Pandoc  Graphviz ImageMagick TeX 和 Latex" />
+  <meta name="keywords" content="ssh 远程登录" />
 
 
 
@@ -57,30 +57,16 @@
 
 
 
-<meta name="description" content="文档工具Pandoc
-Pandoc是一个标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。
-
-可以将 markdown、 reStructuredText、 textile、 HTML、 DocBook、 LaTeX、 MediaWiki markup、 TWiki markup、 OPML、 Emacs Org-Mode、 Txt2Tags、 Microsoft Wo">
+<meta name="description" content="什么是SSH？简单说，SSH是一种网络协议，用于计算机之间的加密登录。如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文档工具">
-<meta property="og:url" content="https://tinyoculus.github.io/2016/04/26/文档工具/index.html">
+<meta property="og:title" content="ssh 远程登录">
+<meta property="og:url" content="https://tinyoculus.github.io/2016/04/29/ssh-远程登录/index.html">
 <meta property="og:site_name" content="TinyOculus's Blog">
-<meta property="og:description" content="文档工具Pandoc
-Pandoc是一个标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。
-
-可以将 markdown、 reStructuredText、 textile、 HTML、 DocBook、 LaTeX、 MediaWiki markup、 TWiki markup、 OPML、 Emacs Org-Mode、 Txt2Tags、 Microsoft Wo">
-<meta property="og:image" content="https://github.com/phodal/fullstack-toolbox/raw/master/images/pandoc.png">
-<meta property="og:image" content="https://github.com/phodal/fullstack-toolbox/raw/master/images/graphviz-example.png">
-<meta property="og:image" content="https://github.com/phodal/fullstack-toolbox/raw/master/images/gausisan.jpg">
-<meta property="og:image" content="https://github.com/phodal/fullstack-toolbox/raw/master/images/aocp.jpg">
-<meta property="og:image" content="https://github.com/phodal/fullstack-toolbox/raw/master/images/formular.jpg">
-<meta property="og:updated_time" content="2016-04-26T01:40:11.000Z">
+<meta property="og:description" content="什么是SSH？简单说，SSH是一种网络协议，用于计算机之间的加密登录。如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目">
+<meta property="og:updated_time" content="2016-04-29T04:14:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文档工具">
-<meta name="twitter:description" content="文档工具Pandoc
-Pandoc是一个标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。
-
-可以将 markdown、 reStructuredText、 textile、 HTML、 DocBook、 LaTeX、 MediaWiki markup、 TWiki markup、 OPML、 Emacs Org-Mode、 Txt2Tags、 Microsoft Wo">
+<meta name="twitter:title" content="ssh 远程登录">
+<meta name="twitter:description" content="什么是SSH？简单说，SSH是一种网络协议，用于计算机之间的加密登录。如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目">
 
 
 
@@ -98,7 +84,7 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
   };
 </script>
 
-  <title> 文档工具 | TinyOculus's Blog </title>
+  <title> ssh 远程登录 | TinyOculus's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -237,7 +223,7 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
             
             
               
-                文档工具
+                ssh 远程登录
               
             
           </h1>
@@ -249,8 +235,8 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-04-26T09:28:52+08:00" content="2016-04-26">
-              2016-04-26
+            <time itemprop="dateCreated" datetime="2016-04-29T11:47:57+08:00" content="2016-04-29">
+              2016-04-29
             </time>
           </span>
 
@@ -263,8 +249,8 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/工具/" itemprop="url" rel="index">
-                    <span itemprop="name">工具</span>
+                  <a href="/categories/liunx/" itemprop="url" rel="index">
+                    <span itemprop="name">liunx</span>
                   </a>
                 </span>
 
@@ -279,8 +265,8 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/04/26/文档工具/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/26/文档工具/" itemprop="commentsCount"></span>
+                <a href="/2016/04/29/ssh-远程登录/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/04/29/ssh-远程登录/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -301,51 +287,24 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
       
 
       
-        <h1 id="u6587_u6863_u5DE5_u5177"><a href="#u6587_u6863_u5DE5_u5177" class="headerlink" title="文档工具"></a>文档工具</h1><h2 id="Pandoc"><a href="#Pandoc" class="headerlink" title="Pandoc"></a>Pandoc</h2><blockquote>
-<p>Pandoc是一个标记语言转换工具，可实现不同标记语言间的格式转换，堪称该领域中的“瑞士军刀”。</p>
-</blockquote>
-<p>可以将 markdown、 reStructuredText、 textile、 HTML、 DocBook、 LaTeX、 MediaWiki markup、 TWiki markup、 OPML、 Emacs Org-Mode、 Txt2Tags、 Microsoft Word docx、 LibreOffice ODT、 EPUB、 Haddock markup</p>
-<p>转化为</p>
-<p>XHTML、 HTML5、 以及HTML幻灯片Slidy， S5，或者DZSlides、Microsoft Word docx、 OpenOffice/LibreOffice ODT、 OpenDocument XML、EPUB、DocBook、 GNU TexInfo、 Groff man pages、LaTeX、 ConTeXt、 LaTeX Beamer slides、PDF via LaTeX、Markdown、 reStructuredText、 AsciiDoc、 MediaWiki markup、 Emacs Org-Mode、 Textile</p>
+        <h1 id="u4EC0_u4E48_u662FSSH_uFF1F"><a href="#u4EC0_u4E48_u662FSSH_uFF1F" class="headerlink" title="什么是SSH？"></a>什么是SSH？</h1><p>简单说，SSH是一种网络协议，用于计算机之间的加密登录。<br>如果一个用户从本地计算机，使用SSH协议登录另一台远程计算机，我们就可以认为，这种登录是安全的，即使被中途截获，密码也不会泄露。<br>最早的时候，互联网通信都是明文通信，一旦被截获，内容就暴露无疑。1995年，芬兰学者Tatu Ylonen设计了SSH协议，将登录信息全部加密，成为互联网安全的一个基本解决方案，迅速在全世界获得推广，目前已经成为Linux系统的标准配置。<br>需要指出的是，SSH只是一种协议，存在多种实现，既有商业实现，也有开源实现。本文针对的实现是OpenSSH，它是自由软件，应用非常广泛。这里只讨论SSH在Linux Shell中的用法。</p>
 <a id="more"></a>
-<p>上图<br><img src="https://github.com/phodal/fullstack-toolbox/raw/master/images/pandoc.png" alt=""></p>
-<p>我最常用的就是：将md转化为workd及pdf。我的毕业论文及之前的几本电子书都是这么做的，它是一个命令行工具，安装方式：</p>
-<ul>
-<li>Windows: choco install pandoc </li>
-<li>Ubuntu/CentOS/OpenSUSE: apt-get intall pandoc 或者 yum install pandoc</li>
-<li>Mac OS: brew install pandoc</li>
-</ul>
-<p>使用方式如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pandoc fullstack.md -o fullstack.docx</span><br></pre></td></tr></table></figure></p>
-<p>如果要转为PDF，则需要另外的一个工具——LaTeX</p>
-<h2 id="Graphviz"><a href="#Graphviz" class="headerlink" title="Graphviz"></a>Graphviz</h2><blockquote>
-<p>Graphviz （英文：Graph Visualization Software的缩写）是一个由AT&amp;T实验室启动的开源工具包，用于绘制DOT语言脚本描述的图形。它也提供了供其它软件使用的库。</p>
-</blockquote>
-<p>简单的来说，就是将代码转换为图形:</p>
-<p><img src="https://github.com/phodal/fullstack-toolbox/raw/master/images/graphviz-example.png" alt=""></p>
-<p>它让我最惊讶的是DOT语言，简直是以我们平时的用法来定义的。上面的图形的代码类似于这样的：</p>
-<pre><code>home-&gt;products-&gt;widgets
-</code></pre><p>又是一个让人惊呆的黑科技，这才是人类应该使用的语言。它可以支持PostScript，PDF，SVG，PNG等一系列的格式，用法</p>
-<pre><code>dot -T png phodal.dot -o phodal.png
-</code></pre><p>简单、粗暴到没有朋友。</p>
-<h2 id="ImageMagick"><a href="#ImageMagick" class="headerlink" title="ImageMagick"></a>ImageMagick</h2><blockquote>
-<p>ImageMagick (TM) 是一个免费的创建、编辑、合成图片的软件。它可以读取、转换、写入多种格式的图片。图片切割、颜色替换、各种效果的应用，图片的旋转、组合，文本，直线，多边形，椭圆，曲线，附加到图片伸展旋转。</p>
-</blockquote>
-<p>来自重点：可以支持超过两百多种格式。It can read and write images in a variety of formats (over 200) including PNG, JPEG, JPEG-2000, GIF, TIFF, DPX, EXR, WebP, Postscript, PDF, and SVG.</p>
-<p>它提供了一个命令行工具叫：<code>convert</code>，这可以自由地转换图片的形式，如：</p>
-<pre><code>convert image.jpg image.png
-</code></pre><p>还可以加各种效果，如：</p>
-<p><img src="https://github.com/phodal/fullstack-toolbox/raw/master/images/gausisan.jpg" alt=""></p>
-<p>顺便做个介绍：上面的这个人叫瑞典模特儿莱娜·瑟德贝里，是在刊于1972年11月号《花花公子》杂志上的一张裸体插图照片的一部分。<strong>她的脸部与裸露的肩部已经变成了事实上的工业标准。</strong></p>
-<p>又是一个简单、粗暴到没有朋友的工具。</p>
-<h2 id="TeX__u548C_Latex"><a href="#TeX__u548C_Latex" class="headerlink" title="TeX 和 Latex"></a>TeX 和 Latex</h2><p>TeX是由是一个由美国计算机教授高德纳（Donald Ervin Knuth）编写的功能强大的排版软件。顺便推荐一下他写的一本书：《计算机程序设计艺术》。因为：</p>
-<blockquote>
-<p>高德纳最早开始自行编写TEX的原因是当时十分粗糙的排版水平已经影响到他的巨著《计算机程序设计艺术》的印刷质量。他以典型的黑客思维模式，最终决定自行编写一个排版软件：TEX。他原本以为他只需要半年时间，在1978年下半年就能完成，但最终他用了超过十年时间，直到1989年TEX才最终停止修改。</p>
-</blockquote>
-<p><img src="https://github.com/phodal/fullstack-toolbox/raw/master/images/aocp.jpg" alt=""></p>
-<p>这直接让我想起Martin Fowler在写《领域特定语言》里好像也是用DSL。Tex的最大优点是可以写出下面的这本复杂的公式：</p>
-<p><img src="https://github.com/phodal/fullstack-toolbox/raw/master/images/formular.jpg" alt=""></p>
-<p>LaTeX 建立在 TeX 之上的工具，它在TeX的基础上大大改善了易用性。对了，如果只是一般的用途的话，就没有必要拿去装逼了~。</p>
-<p>它也是工作于命令行上的工具。</p>
+<h1 id="u6700_u57FA_u672C_u7684_u7528_u6CD5"><a href="#u6700_u57FA_u672C_u7684_u7528_u6CD5" class="headerlink" title="最基本的用法"></a>最基本的用法</h1><p>SSH主要用于远程登录。假定你要以用户名user，登录远程主机host，只要一条简单命令就可以了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh user@host</span><br></pre></td></tr></table></figure></p>
+<p>如果本地用户名与远程用户名一致，登录时可以省略用户名。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh host</span><br></pre></td></tr></table></figure></p>
+<p>SSH的默认端口是22，也就是说，你的登录请求会送进远程主机的22端口。使用p参数，可以修改这个端口。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh -p <span class="number">2222</span> user@host</span><br></pre></td></tr></table></figure></p>
+<p>上面这条命令表示，ssh直接连接远程主机的2222端口。</p>
+<h1 id="u4E2D_u95F4_u4EBA_u653B_u51FB"><a href="#u4E2D_u95F4_u4EBA_u653B_u51FB" class="headerlink" title="中间人攻击"></a>中间人攻击</h1><p>SSH之所以能够保证安全，原因在于它采用了公钥加密。<br>整个过程是这样的：（1）远程主机收到用户的登录请求，把自己的公钥发给用户。（2）用户使用这个公钥，将登录密码加密后，发送回来。（3）远程主机用自己的私钥，解密登录密码，如果密码正确，就同意用户登录。<br>这个过程本身是安全的，但是实施的时候存在一个风险：如果有人截获了登录请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪。因为不像https协议，SSH协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。<br>可以设想，如果攻击者插在用户与远程主机之间（比如在公共的wifi区域），用伪造的公钥，获取用户的登录密码。再用这个密码登录远程主机，那么SSH的安全机制就荡然无存了。这种风险就是著名的”中间人攻击”（Man-in-the-middle attack）。<br>SSH协议是如何应对的呢？</p>
+<h1 id="u53E3_u4EE4_u767B_u5F55"><a href="#u53E3_u4EE4_u767B_u5F55" class="headerlink" title="口令登录"></a>口令登录</h1><p>如果你是第一次登录对方主机，系统会出现下面的提示：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ ssh user@host</span><br><span class="line">The authenticity of host <span class="string">'host (12.18.429.21)'</span> can<span class="string">'t be established.</span><br><span class="line">RSA key fingerprint is 98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)?</span></span><br></pre></td></tr></table></figure></p>
+<p>这段话的意思是，无法确认host主机的真实性，只知道它的公钥指纹，问你还想继续连接吗？<br>所谓”公钥指纹”，是指公钥长度较长（这里采用RSA算法，长达1024位），很难比对，所以对其进行MD5计算，将它变成一个128位的指纹。上例中是98:2e:d7:e0:de:9f:ac:67:28:c2:42:2d:37:16:58:4d，再进行比较，就容易多了。<br>很自然的一个问题就是，用户怎么知道远程主机的公钥指纹应该是多少？回答是没有好办法，远程主机必须在自己的网站上贴出公钥指纹，以便用户自行核对。<br>假定经过风险衡量以后，用户决定接受这个远程主机的公钥。<br>　　Are you sure you want to continue connecting (yes/no)? yes<br>系统会出现一句提示，表示host主机已经得到认可。<br>　　Warning: Permanently added ‘host,12.18.429.21’ (RSA) to the list of known hosts.<br>然后，会要求输入密码。<br>　　Password: (enter password)<br>如果密码正确，就可以登录了。<br>当远程主机的公钥被接受以后，它就会被保存在文件$HOME/.ssh/known_hosts之中。下次再连接这台主机，系统就会认出它的公钥已经保存在本地了，从而跳过警告部分，直接提示输入密码。<br>每个SSH用户都有自己的known_hosts文件，此外系统也有一个这样的文件，通常是/etc/ssh/ssh_known_hosts，保存一些对所有用户都可信赖的远程主机的公钥。</p>
+<h1 id="u516C_u94A5_u767B_u5F55"><a href="#u516C_u94A5_u767B_u5F55" class="headerlink" title="公钥登录"></a>公钥登录</h1><p>使用密码登录，每次都必须输入密码，非常麻烦。好在SSH还提供了公钥登录，可以省去输入密码的步骤。<br>所谓”公钥登录”，原理很简单，就是用户将自己的公钥储存在远程主机上。登录的时候，远程主机会向用户发送一段随机字符串，用户用自己的私钥加密后，再发回来。远程主机用事先储存的公钥进行解密，如果成功，就证明用户是可信的，直接允许登录shell，不再要求密码。<br>这种方法要求用户必须提供自己的公钥。如果没有现成的，可以直接用ssh-keygen生成一个：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen</span><br></pre></td></tr></table></figure>
+<p>运行上面的命令以后，系统会出现一系列提示，可以一路回车。其中有一个问题是，要不要对私钥设置口令（passphrase），如果担心私钥的安全，这里可以设置一个。<br>运行结束以后，在$HOME/.ssh/目录下，会新生成两个文件：id_rsa.pub和id_rsa。前者是你的公钥，后者是你的私钥。<br>这时再输入下面的命令，将公钥传送到远程主机host上面：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-copy-id user@host</span><br></pre></td></tr></table></figure></p>
+<p>好了，从此你再登录，就不需要输入密码了。<br>如果还是不行，就打开远程主机的/etc/ssh/sshd_config这个文件，检查下面几行前面”#”注释是否取掉。<br>　　RSAAuthentication yes<br>　　PubkeyAuthentication yes<br>　　AuthorizedKeysFile .ssh/authorized_keys<br>然后，重启远程主机的ssh服务。<br>　　// ubuntu系统<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service ssh restart</span><br></pre></td></tr></table></figure></p>
+<p>　　// debian系统<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/ssh restart</span><br></pre></td></tr></table></figure></p>
+<h1 id="authorized_keys_u6587_u4EF6"><a href="#authorized_keys_u6587_u4EF6" class="headerlink" title="authorized_keys文件"></a>authorized_keys文件</h1><p>远程主机将用户的公钥，保存在登录后的用户主目录的$HOME/.ssh/authorized_keys文件中。公钥就是一段字符串，只要把它追加在authorized_keys文件的末尾就行了。</p>
+<p>这里不使用上面的ssh-copy-id命令，改用下面的命令，解释公钥的保存过程：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh user@host <span class="string">'mkdir -p .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys'</span> &lt; ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure></p>
+<p>这条命令由多个语句组成，依次分解开来看：<br>（1）<code>&quot;$ ssh user@host&quot;</code>，表示登录远程主机；<br>（2）单引号中的<code>mkdir .ssh &amp;&amp; cat &gt;&gt; .ssh/authorized_keys</code>，表示登录后在远程shell上执行的命令：<br>（3）<code>&quot;$ mkdir -p .ssh&quot;</code>的作用是，如果用户主目录中的.ssh目录不存在，就创建一个；<br>（4）<code>&#39;cat &gt;&gt; .ssh/authorized_keys&#39; &lt; ~/.ssh/id_rsa.pub</code>的作用是，将本地的公钥文件~/.ssh/id_rsa.pub，重定向追加到远程文件authorized_keys的末尾。<br>写入authorized_keys文件后，公钥登录的设置就完成了。</p>
+<h2 id="u5F15_u7528_u53C2_u8003"><a href="#u5F15_u7528_u53C2_u8003" class="headerlink" title="引用参考"></a>引用参考</h2><p><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="external">SSH原理与运用（一）：远程登录 - 阮一峰的网络日志</a></p>
 
       
     </div>
@@ -354,9 +313,9 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
       
         <div class="post-tags">
           
-            <a href="/tags/工具/" rel="tag">#工具</a>
+            <a href="/tags/ssh/" rel="tag">#ssh</a>
           
-            <a href="/tags/文档写作/" rel="tag">#文档写作</a>
+            <a href="/tags/远程登录/" rel="tag">#远程登录</a>
           
         </div>
       
@@ -365,17 +324,13 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/04/25/Horizon-04-25/" rel="next" title="Horizon 04.25">
-                <i class="fa fa-chevron-left"></i> Horizon 04.25
+              <a href="/2016/04/26/文档工具/" rel="next" title="文档工具">
+                <i class="fa fa-chevron-left"></i> 文档工具
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/04/29/ssh-远程登录/" rel="prev" title="ssh 远程登录">
-                ssh 远程登录 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -390,10 +345,10 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/04/26/文档工具/"
-     data-title="文档工具"
+        <div class="ds-share flat" data-thread-key="2016/04/29/ssh-远程登录/"
+     data-title="ssh 远程登录"
      data-content=""
-     data-url="https://tinyoculus.github.io/2016/04/26/文档工具/">
+     data-url="https://tinyoculus.github.io/2016/04/29/ssh-远程登录/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -420,8 +375,8 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/04/26/文档工具/"
-           data-title="文档工具" data-url="https://tinyoculus.github.io/2016/04/26/文档工具/">
+      <div class="ds-thread" data-thread-key="2016/04/29/ssh-远程登录/"
+           data-title="ssh 远程登录" data-url="https://tinyoculus.github.io/2016/04/29/ssh-远程登录/">
       </div>
     
   </div>
@@ -526,7 +481,7 @@ Pandoc是一个标记语言转换工具，可实现不同标记语言间的格�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u6587_u6863_u5DE5_u5177"><span class="nav-number">1.</span> <span class="nav-text">文档工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pandoc"><span class="nav-number">1.1.</span> <span class="nav-text">Pandoc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Graphviz"><span class="nav-number">1.2.</span> <span class="nav-text">Graphviz</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ImageMagick"><span class="nav-number">1.3.</span> <span class="nav-text">ImageMagick</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TeX__u548C_Latex"><span class="nav-number">1.4.</span> <span class="nav-text">TeX 和 Latex</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#u4EC0_u4E48_u662FSSH_uFF1F"><span class="nav-number">1.</span> <span class="nav-text">什么是SSH？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u6700_u57FA_u672C_u7684_u7528_u6CD5"><span class="nav-number">2.</span> <span class="nav-text">最基本的用法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u4E2D_u95F4_u4EBA_u653B_u51FB"><span class="nav-number">3.</span> <span class="nav-text">中间人攻击</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u53E3_u4EE4_u767B_u5F55"><span class="nav-number">4.</span> <span class="nav-text">口令登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#u516C_u94A5_u767B_u5F55"><span class="nav-number">5.</span> <span class="nav-text">公钥登录</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#authorized_keys_u6587_u4EF6"><span class="nav-number">6.</span> <span class="nav-text">authorized_keys文件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5F15_u7528_u53C2_u8003"><span class="nav-number">6.1.</span> <span class="nav-text">引用参考</span></a></li></ol></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
