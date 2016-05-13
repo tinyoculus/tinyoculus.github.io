@@ -307,20 +307,12 @@
 
       
         
-          
-            <h1 id="u5B89_u88C5Java"><a href="#u5B89_u88C5Java" class="headerlink" title="安装Java"></a>安装Java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo apt-get install software-properties-common</span><br><span class="line"></span><br><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install oracle-java8-installer</span><br><span class="line">sudo apt-get install oracle-java8-set-default</span><br></pre></td></tr></table></figure>
-<h1 id="u5B89_u88C5Git"><a href="#u5B89_u88C5Git" class="headerlink" title="安装Git"></a>安装Git</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:git-core/ppa</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
-<h1 id="u5B89_u88C5maven"><a href="#u5B89_u88C5maven" class="headerlink" title="安装maven"></a>安装maven</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install maven</span><br></pre></td></tr></table></figure>
-<h1 id="u5B89_u88C5_oh-my-zsh"><a href="#u5B89_u88C5_oh-my-zsh" class="headerlink" title="安装 oh-my-zsh"></a>安装 oh-my-zsh</h1><h2 id="u4F9D_u8D56_u8F6F_u4EF6_uFF08Dependencies_uFF09"><a href="#u4F9D_u8D56_u8F6F_u4EF6_uFF08Dependencies_uFF09" class="headerlink" title="依赖软件（Dependencies）"></a>依赖软件（Dependencies）</h2><p>oh-my-zsh 的安装依赖于以下两个软件：git、zsh。<br>这两个软件都可以通过软件包来安装：(git安装看上面)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install zsh</span><br></pre></td></tr></table></figure></p>
-<p>安装完之后，可以在Bash 里面输入 zsh，来创建一个新的Shell，并体验 zsh。</p>
-<h2 id="u624B_u52A8_u5B89_u88C5"><a href="#u624B_u52A8_u5B89_u88C5" class="headerlink" title="手动安装"></a>手动安装</h2><h3 id="u514B_u9686_u4EE3_u7801_u5E93_28Clone_the_repository_29"><a href="#u514B_u9686_u4EE3_u7801_u5E93_28Clone_the_repository_29" class="headerlink" title="克隆代码库(Clone the repository)"></a>克隆代码库(Clone the repository)</h3><p><code>git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</code><br>最后面的~/.oh-my-zsh 可以更改为你的心水目录的路径。</p>
-<h3 id="u5907_u4EFD_u5DF2_u5B58_u5728_u7684__7E/-zshrc__u6587_u4EF6_u3010_u53EF_u9009_u64CD_u4F5C_u3011"><a href="#u5907_u4EFD_u5DF2_u5B58_u5728_u7684__7E/-zshrc__u6587_u4EF6_u3010_u53EF_u9009_u64CD_u4F5C_u3011" class="headerlink" title="备份已存在的 ~/.zshrc 文件【可选操作】"></a>备份已存在的 ~/.zshrc 文件【可选操作】</h3><p><code>cp ~/.zshrc ~/.zshrc.bak</code><br>这里的~/.zshrc 文件是 zsh shell 的原始配置文件。</p>
-<h3 id="u4F7F_u7528_oh-my-zsh__u7684_u914D_u7F6E_u6587_u4EF6"><a href="#u4F7F_u7528_oh-my-zsh__u7684_u914D_u7F6E_u6587_u4EF6" class="headerlink" title="使用 oh-my-zsh 的配置文件"></a>使用 oh-my-zsh 的配置文件</h3><p>通过复制 oh-my-zsh 的配置文件模板，来创建新的Zsh 配置文件：<br><code>cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc</code></p>
-<h3 id="u4F7F_u7528_Zsh__u4E3A_u9ED8_u8BA4_u7684_shell"><a href="#u4F7F_u7528_Zsh__u4E3A_u9ED8_u8BA4_u7684_shell" class="headerlink" title="使用 Zsh 为默认的 shell"></a>使用 Zsh 为默认的 shell</h3><p><code>chsh -s /bin/zsh</code></p>
-<p>秘密告诉你吧。chsh -s其实修改的就是/etc/passwd文件里和你的用户名相对应的那一行。现在我来查看下：<br>From: 《用chsh选择shell》</p>
-<h3 id="u91CD_u542F_u7CFB_u7EDF_uFF0C_u5B8C_u6210_u914D_u7F6E"><a href="#u91CD_u542F_u7CFB_u7EDF_uFF0C_u5B8C_u6210_u914D_u7F6E" class="headerlink" title="重启系统，完成配置"></a>重启系统，完成配置</h3><p><code>sudo shutdown -r now</code></p>
-
-          
+          <h1 id="u5B89_u88C5Java"><a href="#u5B89_u88C5Java" class="headerlink" title="安装Java"></a>安装Java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo apt-get install software-properties-common</span><br><span class="line"></span><br><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install oracle-java8-installer</span><br><span class="line">sudo apt-get install oracle-java8-set-default</span><br></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/05/13/Ubuntu-工具安装记录/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
