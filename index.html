@@ -240,6 +240,148 @@
             
               
                 
+                <a class="post-title-link" href="/2016/05/19/Linux-安装配置Redis/" itemprop="url">
+                  Linux 安装配置Redis
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-05-19T09:55:44+08:00" content="2016-05-19">
+              2016-05-19
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/liunx-redis/" itemprop="url" rel="index">
+                    <span itemprop="name">liunx redis</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/05/19/Linux-安装配置Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/05/19/Linux-安装配置Redis/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux_u5B89_u88C5_u914D_u7F6ERedis__u2013_CentOS_u4E0B_u5B89_u88C5Redis"><a href="#Linux_u5B89_u88C5_u914D_u7F6ERedis__u2013_CentOS_u4E0B_u5B89_u88C5Redis" class="headerlink" title="Linux安装配置Redis – CentOS下安装Redis"></a>Linux安装配置Redis – CentOS下安装Redis</h1><p>Redis是一个高性能的，开源key-value型数据库。是构建高性能，可扩展的Web应用的完美解决方案，可以内存存储亦可持久化存储。因为要使用跨进程，跨服务级别的数据缓存，在对比多个方案后，决定使用Redis。顺便整理下Redis的安装过程，以便查阅。</p>
+<h2 id="u4E0B_u8F7DRedis"><a href="#u4E0B_u8F7DRedis" class="headerlink" title="下载Redis"></a>下载Redis</h2><p>目前，最新的Redist版本为3.0，使用wget下载，命令如下：</p>
+<p><code>wget http://download.redis.io/releases/redis-3.2.0.tar.gz</code></p>
+<h2 id="u89E3_u538BRedis"><a href="#u89E3_u538BRedis" class="headerlink" title="解压Redis"></a>解压Redis</h2><p>下载完成后，使用tar命令解压下载文件：</p>
+<p><code>tar -xzvf redis-3.2.0.tar.gz</code></p>
+<h2 id="u7F16_u8BD1_u5B89_u88C5Redis"><a href="#u7F16_u8BD1_u5B89_u88C5Redis" class="headerlink" title="编译安装Redis"></a>编译安装Redis</h2><p>切换至程序目录，并执行make命令编译：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> redis-<span class="number">3.2</span>.<span class="number">0</span></span><br><span class="line">make</span><br></pre></td></tr></table></figure>
+<p>执行安装命令</p>
+<p><code>make install</code><br>make install安装完成后，会在/usr/local/bin目录下生成下面几个可执行文件，它们的作用分别是：</p>
+<p>redis-server：Redis服务器端启动程序<br>redis-cli：Redis客户端操作工具。也可以用telnet根据其纯文本协议来操作<br>redis-benchmark：Redis性能测试工具<br>redis-check-aof：数据修复工具<br>redis-check-dump：检查导出工具</p>
+<pre><code>备注
+有的机器会出现类似以下错误：
+
+make[1]: Entering directory `/root/redis/src&apos;
+You need tcl 8.5 or newer in order to run the Redis test
+……
+这是因为没有安装tcl导致，yum安装即可：
+
+``yum install tcl``
+</code></pre><h2 id="u914D_u7F6ERedis"><a href="#u914D_u7F6ERedis" class="headerlink" title="配置Redis"></a>配置Redis</h2><p>复制配置文件到/etc/目录：</p>
+<p><code>cp redis.conf /etc/</code><br>为了让Redis后台运行，一般还需要修改redis.conf文件：</p>
+<p><code>vi /etc/redis.conf</code><br>修改daemonize配置项为yes，使Redis进程在后台运行：</p>
+<p>daemonize yes</p>
+<h2 id="u542F_u52A8Redis"><a href="#u542F_u52A8Redis" class="headerlink" title="启动Redis"></a>启动Redis</h2><p>配置完成后，启动Redis：</p>
+<p><code># redis-server /etc/redis.conf</code><br>检查启动情况：</p>
+<p><code># ps -ef | grep redis</code><br>看到类似下面的一行，表示启动成功：</p>
+<p>root     18443     1  0 13:05 ?        00:00:00 ./redis-server *:6379 </p>
+<h2 id="u6DFB_u52A0_u5F00_u673A_u542F_u52A8_u9879"><a href="#u6DFB_u52A0_u5F00_u673A_u542F_u52A8_u9879" class="headerlink" title="添加开机启动项"></a>添加开机启动项</h2><p>让Redis开机运行可以将其添加到rc.local文件，也可将添加为系统服务service。本文使用rc.local的方式，添加service请参考：Redis 配置为 Service 系统服务 。</p>
+<p>为了能让Redis在服务器重启后自动启动，需要将启动命令写入开机启动项：</p>
+<p>echo “/usr/local/bin/redis-server /etc/redis.conf” &gt;&gt;/etc/rc.local</p>
+<h2 id="Redis_u914D_u7F6E_u53C2_u6570"><a href="#Redis_u914D_u7F6E_u53C2_u6570" class="headerlink" title="Redis配置参数"></a>Redis配置参数</h2><p>在前面的操作中，我们用到了使Redis进程在后台运行的参数，下面介绍其它一些常用的Redis启动参数：</p>
+<p>daemonize：是否以后台daemon方式运行<br>pidfile：pid文件位置<br>port：监听的端口号<br>timeout：请求超时时间<br>loglevel：log信息级别<br>logfile：log文件位置<br>databases：开启数据库的数量<br>save <em> </em>：保存快照的频率，第一个<em>表示多长时间，第三个</em>表示执行多少次写操作。在一定时间内执行一定数量的写操作时，自动保存快照。可设置多个条件。<br>rdbcompression：是否使用压缩<br>dbfilename：数据快照文件名（只是文件名）<br>dir：数据快照的保存目录（仅目录）<br>appendonly：是否开启appendonlylog，开启的话每次写操作会记一条log，这会提高数据抗风险能力，但影响效率。<br>appendfsync：appendonlylog如何同步到磁盘。三个选项，分别是每次写都强制调用fsync、每秒启用一次fsync、不调用fsync等待系统自己同步</p>
+<p>原文：<a href="http://itbilu.com/linux/management/4kB2ninp.html" target="_blank" rel="external">Linux安装配置Redis CentOS下安装Redis - IT笔录</a></p>
+
+          
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/13/Ubuntu-工具安装记录/" itemprop="url">
                   Ubuntu 工具安装记录
                 </a>
@@ -1242,123 +1384,12 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/08/Horizon-03-08/" itemprop="url">
-                  Horizon 03.08
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-08T09:33:41+08:00" content="2016-03-08">
-              2016-03-08
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/视界/" itemprop="url" rel="index">
-                    <span itemprop="name">视界</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/08/Horizon-03-08/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/08/Horizon-03-08/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>星夜寻航</p>
-<p><img src="https://photo.tuchong.com/374683/f/13245291.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1399,7 +1430,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">20</span>
+              <span class="site-state-item-count">21</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1407,7 +1438,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1416,7 +1447,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
