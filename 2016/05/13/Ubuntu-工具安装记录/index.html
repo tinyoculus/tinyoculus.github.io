@@ -287,11 +287,11 @@
       
 
       
-        <h1 id="u5B89_u88C5Java"><a href="#u5B89_u88C5Java" class="headerlink" title="安装Java"></a>安装Java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo apt-get install software-properties-common</span><br><span class="line"></span><br><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install oracle-java8-installer</span><br><span class="line">sudo apt-get install oracle-java8-set-default</span><br></pre></td></tr></table></figure>
+        <h1 id="u5B89_u88C5Java"><a href="#u5B89_u88C5Java" class="headerlink" title="安装Java"></a>安装Java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-software-properties</div><div class="line">sudo apt-get install software-properties-common</div><div class="line"></div><div class="line">sudo add-apt-repository ppa:webupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">sudo apt-get install oracle-java8-set-default</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<h1 id="u5B89_u88C5Git"><a href="#u5B89_u88C5Git" class="headerlink" title="安装Git"></a>安装Git</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:git-core/ppa</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
-<h1 id="u5B89_u88C5maven"><a href="#u5B89_u88C5maven" class="headerlink" title="安装maven"></a>安装maven</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install maven</span><br></pre></td></tr></table></figure>
-<h1 id="u5B89_u88C5_oh-my-zsh"><a href="#u5B89_u88C5_oh-my-zsh" class="headerlink" title="安装 oh-my-zsh"></a>安装 oh-my-zsh</h1><h2 id="u4F9D_u8D56_u8F6F_u4EF6_uFF08Dependencies_uFF09"><a href="#u4F9D_u8D56_u8F6F_u4EF6_uFF08Dependencies_uFF09" class="headerlink" title="依赖软件（Dependencies）"></a>依赖软件（Dependencies）</h2><p>oh-my-zsh 的安装依赖于以下两个软件：git、zsh。<br>这两个软件都可以通过软件包来安装：(git安装看上面)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install zsh</span><br></pre></td></tr></table></figure></p>
+<h1 id="u5B89_u88C5Git"><a href="#u5B89_u88C5Git" class="headerlink" title="安装Git"></a>安装Git</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo add-apt-repository ppa:git-core/ppa</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install git</div></pre></td></tr></table></figure>
+<h1 id="u5B89_u88C5maven"><a href="#u5B89_u88C5maven" class="headerlink" title="安装maven"></a>安装maven</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install maven</div></pre></td></tr></table></figure>
+<h1 id="u5B89_u88C5_oh-my-zsh"><a href="#u5B89_u88C5_oh-my-zsh" class="headerlink" title="安装 oh-my-zsh"></a>安装 oh-my-zsh</h1><h2 id="u4F9D_u8D56_u8F6F_u4EF6_uFF08Dependencies_uFF09"><a href="#u4F9D_u8D56_u8F6F_u4EF6_uFF08Dependencies_uFF09" class="headerlink" title="依赖软件（Dependencies）"></a>依赖软件（Dependencies）</h2><p>oh-my-zsh 的安装依赖于以下两个软件：git、zsh。<br>这两个软件都可以通过软件包来安装：(git安装看上面)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install zsh</div></pre></td></tr></table></figure></p>
 <p>安装完之后，可以在Bash 里面输入 zsh，来创建一个新的Shell，并体验 zsh。</p>
 <h2 id="u624B_u52A8_u5B89_u88C5"><a href="#u624B_u52A8_u5B89_u88C5" class="headerlink" title="手动安装"></a>手动安装</h2><h3 id="u514B_u9686_u4EE3_u7801_u5E93_28Clone_the_repository_29"><a href="#u514B_u9686_u4EE3_u7801_u5E93_28Clone_the_repository_29" class="headerlink" title="克隆代码库(Clone the repository)"></a>克隆代码库(Clone the repository)</h3><p><code>git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh</code><br>最后面的~/.oh-my-zsh 可以更改为你的心水目录的路径。</p>
 <h3 id="u5907_u4EFD_u5DF2_u5B58_u5728_u7684__7E/-zshrc__u6587_u4EF6_u3010_u53EF_u9009_u64CD_u4F5C_u3011"><a href="#u5907_u4EFD_u5DF2_u5B58_u5728_u7684__7E/-zshrc__u6587_u4EF6_u3010_u53EF_u9009_u64CD_u4F5C_u3011" class="headerlink" title="备份已存在的 ~/.zshrc 文件【可选操作】"></a>备份已存在的 ~/.zshrc 文件【可选操作】</h3><p><code>cp ~/.zshrc ~/.zshrc.bak</code><br>这里的~/.zshrc 文件是 zsh shell 的原始配置文件。</p>
@@ -419,7 +419,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -427,7 +427,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -436,7 +436,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

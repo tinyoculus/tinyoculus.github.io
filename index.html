@@ -240,6 +240,136 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/28/Shell脚本入门/" itemprop="url">
+                  Shell脚本入门
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-28T00:59:04+08:00" content="2016-10-28">
+              2016-10-28
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/shell-linux/" itemprop="url" rel="index">
+                    <span itemprop="name">shell linux</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/28/Shell脚本入门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/28/Shell脚本入门/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h1 id="Shell_u811A_u672C_u7F16_u7A0B30_u5206_u949F_u5165_u95E8"><a href="#Shell_u811A_u672C_u7F16_u7A0B30_u5206_u949F_u5165_u95E8" class="headerlink" title="Shell脚本编程30分钟入门"></a>Shell脚本编程30分钟入门</h1><h2 id="u4EC0_u4E48_u662FShell_u811A_u672C"><a href="#u4EC0_u4E48_u662FShell_u811A_u672C" class="headerlink" title="什么是Shell脚本"></a>什么是Shell脚本</h2><h3 id="u793A_u4F8B"><a href="#u793A_u4F8B" class="headerlink" title="示例"></a>示例</h3><p>看个例子吧：</p>
+<pre><code>#!/bin/sh
+cd ~
+mkdir shell_tut
+cd shell_tut
+
+for ((i=0; i&lt;10; i++)); do
+    touch test_$i.txt
+done
+</code></pre><h3 id="u793A_u4F8B_u89E3_u91CA"><a href="#u793A_u4F8B_u89E3_u91CA" class="headerlink" title="示例解释"></a>示例解释</h3><ul>
+<li>第1行：指定脚本解释器，这里是用/bin/sh做解释器的</li>
+<li>第2行：切换到当前用户的home目录</li>
+<li>第3行：创建一个目录shell_tut</li>
+<li>第4行：切换到shell_tut目录</li>
+<li>第5行：循环条件，一共循环10次</li>
+<li>第6行：创建一个test_1…10.txt文件</li>
+<li>第7行：循环体结束</li>
+</ul>
+<p>cd, mkdir, touch都是系统自带的程序，一般在/bin或者/usr/bin目录下。for, do, done是sh脚本语言的关键字。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/28/Shell脚本入门/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/05/19/Linux-安装配置Redis/" itemprop="url">
                   Linux 安装配置Redis
                 </a>
@@ -421,7 +551,7 @@
 
       
         
-          <h1 id="u5B89_u88C5Java"><a href="#u5B89_u88C5Java" class="headerlink" title="安装Java"></a>安装Java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo apt-get install software-properties-common</span><br><span class="line"></span><br><span class="line">sudo add-apt-repository ppa:webupd8team/java</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install oracle-java8-installer</span><br><span class="line">sudo apt-get install oracle-java8-set-default</span><br></pre></td></tr></table></figure>
+          <h1 id="u5B89_u88C5Java"><a href="#u5B89_u88C5Java" class="headerlink" title="安装Java"></a>安装Java</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-software-properties</div><div class="line">sudo apt-get install software-properties-common</div><div class="line"></div><div class="line">sudo add-apt-repository ppa:webupd8team/java</div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install oracle-java8-installer</div><div class="line">sudo apt-get install oracle-java8-set-default</div></pre></td></tr></table></figure>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/05/13/Ubuntu-工具安装记录/#more" rel="contents">
               阅读全文 &raquo;
@@ -873,7 +1003,7 @@
 
       
         
-          <h1 id="u7F16_u8BD1_u548C_u5B89_u88C5Tengine"><a href="#u7F16_u8BD1_u548C_u5B89_u88C5Tengine" class="headerlink" title="编译和安装Tengine"></a>编译和安装Tengine</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+          <h1 id="u7F16_u8BD1_u548C_u5B89_u88C5Tengine"><a href="#u7F16_u8BD1_u548C_u5B89_u88C5Tengine" class="headerlink" title="编译和安装Tengine"></a>编译和安装Tengine</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure</div><div class="line">make</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
 <p>Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。</p>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/04/22/测试nginx反向代理/#more" rel="contents">
@@ -1108,7 +1238,7 @@
         
           <h2 id="u7CFB_u7EDFCentOS_6-x_uFF1A"><a href="#u7CFB_u7EDFCentOS_6-x_uFF1A" class="headerlink" title="系统CentOS 6.x："></a>系统CentOS 6.x：</h2><ul>
 <li>从官网下载最新开源版的压缩包，比如我这里是nexus-2.12.1-01-bundle.tar.gz，保存在 /usr/local/ 目录下</li>
-<li>解压，并且制作软链接：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz</span><br><span class="line">tar zxvf nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span>-bundle.tar.gz  </span><br><span class="line">ln <span class="operator">-s</span> /usr/<span class="built_in">local</span>/nexus-<span class="number">2.12</span>.<span class="number">1</span>-<span class="number">01</span> /usr/<span class="built_in">local</span>/nexus</span><br></pre></td></tr></table></figure>
+<li>解压，并且制作软链接：<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">wget https://sonatype-download.global.ssl.fastly.net/nexus/oss/nexus-2.12.1-01-bundle.tar.gz</div><div class="line">tar zxvf nexus-2.12.1-01-bundle.tar.gz  </div><div class="line">ln <span class="_">-s</span> /usr/<span class="built_in">local</span>/nexus-2.12.1-01 /usr/<span class="built_in">local</span>/nexus</div></pre></td></tr></table></figure>
 </li>
 </ul>
           <div class="post-more-link text-center">
@@ -1245,117 +1375,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/03/15/Horizon-03-15/" itemprop="url">
-                  Horizon 03.15
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-03-15T16:36:37+08:00" content="2016-03-15">
-              2016-03-15
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/视界/" itemprop="url" rel="index">
-                    <span itemprop="name">视界</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/03/15/Horizon-03-15/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/03/15/Horizon-03-15/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>静观风云变</p>
-<p><img src="http://alaris.dyndns.hu/content/skye.jpg" alt=""></p>
-
-          
-        
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
 
   </section>
 
@@ -1402,7 +1421,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1410,7 +1429,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -1419,7 +1438,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

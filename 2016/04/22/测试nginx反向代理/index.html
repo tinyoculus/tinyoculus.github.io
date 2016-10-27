@@ -290,7 +290,7 @@ Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来
       
 
       
-        <h1 id="u7F16_u8BD1_u548C_u5B89_u88C5Tengine"><a href="#u7F16_u8BD1_u548C_u5B89_u88C5Tengine" class="headerlink" title="编译和安装Tengine"></a>编译和安装Tengine</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+        <h1 id="u7F16_u8BD1_u548C_u5B89_u88C5Tengine"><a href="#u7F16_u8BD1_u548C_u5B89_u88C5Tengine" class="headerlink" title="编译和安装Tengine"></a>编译和安装Tengine</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">./configure</div><div class="line">make</div><div class="line">sudo make install</div></pre></td></tr></table></figure>
 <p>Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来指定你想要的安装目录。</p>
 <a id="more"></a>
 <h2 id="configure_u811A_u672C_u7684_u9009_u9879"><a href="#configure_u811A_u672C_u7684_u9009_u9879" class="headerlink" title="configure脚本的选项"></a>configure脚本的选项</h2><p>大部分的选项跟Nginx是兼容的。下面列出的都是Tengine特有的选项。如果你想查看Tengine支持的所有选项，你可以运行’./configure –help’命令来获取帮助。<br>–dso-path<br>设置DSO模块的安装路径。<br>–dso-tool-path<br>设置dso_tool脚本本身的安装路径。<br>–without-dso<br>关闭动态加载模块的功能。<br>–with-jemalloc<br>让Tengine链接jemalloc库，运行时用jemalloc来分配和释放内存。<br>–with-jemalloc=path<br>设置jemalloc库的源代码路径，Tengine可以静态编译和链接该库。</p>
@@ -299,8 +299,8 @@ Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来
 <p>nginx -V 查看 nginx 的启动参数，配置文件的位置默认是<br>–conf-path=/usr/local/etc/nginx/nginx.conf </p>
 <p>重新加载配置|重启|停止|退出 nginx<br>    nginx -s reload|reopen|stop|quit </p>
 <h1 id="u53CD_u5411_u4EE3_u7406"><a href="#u53CD_u5411_u4EE3_u7406" class="headerlink" title="反向代理"></a>反向代理</h1><p>假设希望别人输入 localhost:8080 时直接跳转到 localhost:2014，那么在 nginx.conf 中配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">  server &#123;</span><br><span class="line">    listen <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">      proxy_pass http://<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">2014</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="u8D1F_u8F7D_u5747_u8861_u52A0_u53CD_u5411_u4EE3_u7406"><a href="#u8D1F_u8F7D_u5747_u8861_u52A0_u53CD_u5411_u4EE3_u7406" class="headerlink" title="负载均衡加反向代理"></a>负载均衡加反向代理</h2><p>myapp1 是一组网页的集合，这里作为一个变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    upstream myapp1 &#123;</span><br><span class="line">        server srv1.example.com;</span><br><span class="line">        server srv2.example.com;</span><br><span class="line">        server srv3.example.com;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen <span class="number">8080</span>;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">            proxy_pass http://myapp1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">  server &#123;</div><div class="line">    listen 8080;</div><div class="line"></div><div class="line">    location / &#123;</div><div class="line">      proxy_pass http://127.0.0.1:2014;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="u8D1F_u8F7D_u5747_u8861_u52A0_u53CD_u5411_u4EE3_u7406"><a href="#u8D1F_u8F7D_u5747_u8861_u52A0_u53CD_u5411_u4EE3_u7406" class="headerlink" title="负载均衡加反向代理"></a>负载均衡加反向代理</h2><p>myapp1 是一组网页的集合，这里作为一个变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">http &#123;</div><div class="line">    upstream myapp1 &#123;</div><div class="line">        server srv1.example.com;</div><div class="line">        server srv2.example.com;</div><div class="line">        server srv3.example.com;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    server &#123;</div><div class="line">        listen 8080;</div><div class="line"></div><div class="line">        location / &#123;</div><div class="line">            proxy_pass http://myapp1;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <h2 id="u6CE8_u610F_uFF1A"><a href="#u6CE8_u610F_uFF1A" class="headerlink" title="注意："></a>注意：</h2><p>location 后面的东西是一个 uri 地址，/ 的话表示根目录的请求直接跳转到 myapp1 上，当然 uri 还可以更长一些，比如 /name 之类的，具体怎么替换还要结合 proxy_pass 来处理，这里分为两种情况</p>
 <p>If the proxy_pass directive is specified with a URI, then when a request is passed to the server, the part of a normalized request URI matching the location is replaced by a URI specified in the directive:</p>
 <p>location /name/ {<br>    proxy_pass <a href="http://127.0.0.1/remote/" target="_blank" rel="external">http://127.0.0.1/remote/</a>;<br>}<br>If proxy_pass is specified without a URI, the request URI is passed to the server in the same form as sent by a client when the original request is processed, or the full normalized request URI is passed when processing the changed URI:</p>
@@ -426,7 +426,7 @@ Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">21</span>
+              <span class="site-state-item-count">22</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -434,7 +434,7 @@ Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -443,7 +443,7 @@ Tengine默认将安装在/usr/local/nginx目录。你可以用’–prefix’来
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-count">25</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
