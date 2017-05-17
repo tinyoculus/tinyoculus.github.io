@@ -297,7 +297,7 @@
 
       
         <p>转自【<a href="http://www.cnblogs.com/FrankTan/archive/2010/03/01/1634516.html" target="_blank" rel="external">Bash Shell中命令行选项/参数处理 - Frank Tan - 博客园</a>】</p>
-<h2 id="u5F15_u8A00"><a href="#u5F15_u8A00" class="headerlink" title="引言"></a>引言</h2><p>   写程序的时候经常要处理命令行参数，本文描述在Bash下的命令行处理方式。<br>   选项与参数：</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p>   写程序的时候经常要处理命令行参数，本文描述在Bash下的命令行处理方式。<br>   选项与参数：</p>
 <p>   如下一个命令行：<br>    <code>./test.sh -f config.conf -v --prefix=/home</code></p>
 <p>   我们称-f为选项，它需要一个参数，即config.conf, -v 也是一个选项，但它不需要参数。</p>
 <p>   –prefix我们称之为一个长选项，即选项本身多于一个字符，它也需要一个参数，用等号连接，当然等号不是必须的，/home可以直接写在–prefix后面，即–prefix/home,更多的限制后面具体会讲到。<br>   在bash中，可以用以下三种方式来处理命令行参数，每种方式都有自己的应用场景。</p>
@@ -306,7 +306,7 @@
 - getopt
 </code></pre><a id="more"></a>
 <p>   下面我们依次讨论这三种处理方式。</p>
-<h2 id="u624B_u5DE5_u5904_u7406_u65B9_u5F0F"><a href="#u624B_u5DE5_u5904_u7406_u65B9_u5F0F" class="headerlink" title="手工处理方式"></a>手工处理方式</h2><p>   在手工处理方式中，首先要知道几个变量，还是以上面的命令行为例：</p>
+<h2 id="手工处理方式"><a href="#手工处理方式" class="headerlink" title="手工处理方式"></a>手工处理方式</h2><p>   在手工处理方式中，首先要知道几个变量，还是以上面的命令行为例：</p>
 <pre><code>*    $0 ： ./test.sh,即命令本身，相当于C/C++中的argv[0]
 *    $1 ： -f,第一个参数.
 *    $2 ： config.conf
@@ -326,7 +326,7 @@
 <p>if [ -n $1 ]  #$1不为空</p>
 <p>但如果用户不传参数的时候，$1为空，这时 就会变成 [ -n ] ,所以需要加一个辅助字符串来进行比较。</p>
 <p>手工处理方式能满足大多数的简单需求，配合shift使用也能构造出强大的功能，但在要处理复杂选项的时候建议用下面的两种方法。</p>
-<h2 id="getopts/getopt"><a href="#getopts/getopt" class="headerlink" title="getopts/getopt"></a>getopts/getopt</h2><p>处理命令行参数是一个相似而又复杂的事情，为此，C提供了getopt/getopt_long等函数，<br>C++的boost提供了Options库，在shell中，处理此事的是getopts和getopt.</p>
+<h2 id="getopts-getopt"><a href="#getopts-getopt" class="headerlink" title="getopts/getopt"></a>getopts/getopt</h2><p>处理命令行参数是一个相似而又复杂的事情，为此，C提供了getopt/getopt_long等函数，<br>C++的boost提供了Options库，在shell中，处理此事的是getopts和getopt.</p>
 <p>getopts和getopt功能相似但又不完全相同，其中getopt是独立的可执行文件，而getopts是由Bash内置的。</p>
 <p>先来看看参数传递的典型用法:</p>
 <pre><code>* ./test.sh -a -b -c  ： 短选项，各选项不需参数
@@ -339,7 +339,7 @@
 <p>现在就可以使用：<br><code>./test.sh -a arg -b -c</code><br>或<br><code>./test.sh -a arg -bc</code><br>来加载了。<br>应该说绝大多数脚本使用该函数就可以了，如果需要支持长选项以及可选参数，那么就需要使用getopt.<br>下面是getopt自带的一个例子：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/bash</span></div><div class="line"></div><div class="line"><span class="comment"># A small example program for using the new getopt(1) program.</span></div><div class="line"><span class="comment"># This program will only work with bash(1)</span></div><div class="line"><span class="comment"># An similar program using the tcsh(1) script language can be found</span></div><div class="line"><span class="comment"># as parse.tcsh</span></div><div class="line"></div><div class="line"><span class="comment"># Example input and output (from the bash prompt):</span></div><div class="line"><span class="comment"># ./parse.bash -a par1 'another arg' --c-long 'wow!*\?' -cmore -b " very long "</span></div><div class="line"><span class="comment"># Option a</span></div><div class="line"><span class="comment"># Option c, no argument</span></div><div class="line"><span class="comment"># Option c, argument `more'</span></div><div class="line"><span class="comment"># Option b, argument ` very long '</span></div><div class="line"><span class="comment"># Remaining arguments:</span></div><div class="line"><span class="comment"># --&gt; `par1'</span></div><div class="line"><span class="comment"># --&gt; `another arg'</span></div><div class="line"><span class="comment"># --&gt; `wow!*\?'</span></div><div class="line"></div><div class="line"><span class="comment"># Note that we use `"$@"' to let each command-line parameter expand to a</span></div><div class="line"><span class="comment"># separate word. The quotes around `$@' are essential!</span></div><div class="line"><span class="comment"># We need TEMP as the `eval set --' would nuke the return value of getopt.</span></div><div class="line"></div><div class="line"><span class="comment">#-o表示短选项，两个冒号表示该选项有一个可选参数，可选参数必须紧贴选项</span></div><div class="line"><span class="comment">#如-carg 而不能是-c arg</span></div><div class="line"><span class="comment">#--long表示长选项</span></div><div class="line"><span class="comment">#"$@"在上面解释过</span></div><div class="line"><span class="comment"># -n:出错时的信息</span></div><div class="line"><span class="comment"># -- ：举一个例子比较好理解：</span></div><div class="line"><span class="comment">#我们要创建一个名字为 "-f"的目录你会怎么办？</span></div><div class="line"><span class="comment"># mkdir -f #不成功，因为-f会被mkdir当作选项来解析，这时就可以使用</span></div><div class="line"><span class="comment"># mkdir -- -f 这样-f就不会被作为选项。</span></div><div class="line"></div><div class="line">TEMP=`getopt -o ab:c:: --long a-long,b-long:,c-long:: \</div><div class="line">     -n <span class="string">'example.bash'</span> -- <span class="string">"<span class="variable">$@</span>"</span>`</div><div class="line"></div><div class="line"><span class="keyword">if</span> [ $? != 0 ] ; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"Terminating..."</span> &gt;&amp;2 ; <span class="built_in">exit</span> 1 ; <span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="comment"># Note the quotes around `$TEMP': they are essential!</span></div><div class="line"><span class="comment">#set 会重新排列参数的顺序，也就是改变$1,$2...$n的值，这些值在getopt中重新排列过了</span></div><div class="line"><span class="built_in">eval</span> <span class="built_in">set</span> -- <span class="string">"<span class="variable">$TEMP</span>"</span></div><div class="line"></div><div class="line"><span class="comment">#经过getopt的处理，下面处理具体选项。</span></div><div class="line"></div><div class="line"><span class="keyword">while</span> <span class="literal">true</span> ; <span class="keyword">do</span></div><div class="line">        <span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></div><div class="line">                <span class="_">-a</span>|-<span class="_">-a</span>-long) <span class="built_in">echo</span> <span class="string">"Option a"</span> ; <span class="built_in">shift</span> ;;</div><div class="line">                -b|--b-long) <span class="built_in">echo</span> <span class="string">"Option b, argument \`<span class="variable">$2</span>'"</span> ; <span class="built_in">shift</span> 2 ;;</div><div class="line">                -c|--c-long)</div><div class="line">                        <span class="comment"># c has an optional argument. As we are in quoted mode,</span></div><div class="line">                        <span class="comment"># an empty parameter will be generated if its optional</span></div><div class="line">                        <span class="comment"># argument is not found.</span></div><div class="line">                        <span class="keyword">case</span> <span class="string">"<span class="variable">$2</span>"</span> <span class="keyword">in</span></div><div class="line">                                <span class="string">""</span>) <span class="built_in">echo</span> <span class="string">"Option c, no argument"</span>; <span class="built_in">shift</span> 2 ;;</div><div class="line">                                *)  <span class="built_in">echo</span> <span class="string">"Option c, argument \`<span class="variable">$2</span>'"</span> ; <span class="built_in">shift</span> 2 ;;</div><div class="line">                        <span class="keyword">esac</span> ;;</div><div class="line">                --) <span class="built_in">shift</span> ; <span class="built_in">break</span> ;;</div><div class="line">                *) <span class="built_in">echo</span> <span class="string">"Internal error!"</span> ; <span class="built_in">exit</span> 1 ;;</div><div class="line">        <span class="keyword">esac</span></div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"Remaining arguments:"</span></div><div class="line"><span class="keyword">for</span> arg <span class="keyword">do</span></div><div class="line">   <span class="built_in">echo</span> <span class="string">'--&gt; '</span><span class="string">"\`<span class="variable">$arg</span>'"</span> ;</div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
 <p>比如我们使用<br><code>./test -a  -b arg arg1 -c</code><br>你可以看到,命令行中多了个arg1参数，在经过getopt和set之后，命令行会变为：<br>-a -b arg -c – arg1<br>$1指向-a,$2指向-b,$3指向arg,$4指向-c,$5指向–,而多出的arg1则被放到了最后。</p>
-<h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>一般小脚本手工处理也许就够了，getopts能处理绝大多数的情况，getopt较复杂，功能也更强大。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>一般小脚本手工处理也许就够了，getopts能处理绝大多数的情况，getopt较复杂，功能也更强大。</p>
 
       
     </div>
@@ -458,7 +458,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">22</span>
+              <span class="site-state-item-count">23</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -466,7 +466,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">11</span>
+                <span class="site-state-item-count">12</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -475,7 +475,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">25</span>
+                <span class="site-state-item-count">27</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -518,7 +518,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#u5F15_u8A00"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u624B_u5DE5_u5904_u7406_u65B9_u5F0F"><span class="nav-number">2.</span> <span class="nav-text">手工处理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getopts/getopt"><span class="nav-number">3.</span> <span class="nav-text">getopts/getopt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#u603B_u7ED3"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引言"><span class="nav-number">1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手工处理方式"><span class="nav-number">2.</span> <span class="nav-text">手工处理方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getopts-getopt"><span class="nav-number">3.</span> <span class="nav-text">getopts/getopt</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
           </div>
           <div class="post-toc-indicator-bottom post-toc-indicator">
@@ -545,7 +545,7 @@
 
   
   &copy; 
-  <span itemprop="copyrightYear">2016</span>
+  <span itemprop="copyrightYear">2017</span>
 
   <span class="with-love">
     <i class="fa fa-heart"></i>

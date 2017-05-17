@@ -1,0 +1,856 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css"/>
+
+
+
+
+  <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,400italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=0.5.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="麻将, 胡牌算法, 游戏" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=0.5.0" />
+
+
+
+
+
+
+<meta name="description" content="【转载】 Unity3D 通用麻将胡牌算法 - JAVA说
+正常的麻将胡牌方式为满足N  ABC + M DDD +ＥＥ 的形式，及存在一个对子(EE)，剩余牌均能组成顺子（ABC）或者刻子（DDD）。
+很容易发现必须满足size%3 == 2的形式才可以去计算胡牌。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通用麻将胡牌算法">
+<meta property="og:url" content="https://tinyoculus.github.io/2017/05/17/通用麻将胡牌算法/index.html">
+<meta property="og:site_name" content="TinyOculus's Blog">
+<meta property="og:description" content="【转载】 Unity3D 通用麻将胡牌算法 - JAVA说
+正常的麻将胡牌方式为满足N  ABC + M DDD +ＥＥ 的形式，及存在一个对子(EE)，剩余牌均能组成顺子（ABC）或者刻子（DDD）。
+很容易发现必须满足size%3 == 2的形式才可以去计算胡牌。">
+<meta property="og:image" content="http://img.voidcn.com/vcimg/000/006/189/489_43a_ee8.png">
+<meta property="og:updated_time" content="2017-05-17T05:18:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="通用麻将胡牌算法">
+<meta name="twitter:description" content="【转载】 Unity3D 通用麻将胡牌算法 - JAVA说
+正常的麻将胡牌方式为满足N  ABC + M DDD +ＥＥ 的形式，及存在一个对子(EE)，剩余牌均能组成顺子（ABC）或者刻子（DDD）。
+很容易发现必须满足size%3 == 2的形式才可以去计算胡牌。">
+<meta name="twitter:image" content="http://img.voidcn.com/vcimg/000/006/189/489_43a_ee8.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+  <title> 通用麻将胡牌算法 | TinyOculus's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-74536326-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">TinyOculus's Blog</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">不忘初心，谦恭而行</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu ">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-home fa-fw"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-archive fa-fw"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-th fa-fw"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-tags fa-fw"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+      
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                通用麻将胡牌算法
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2017-05-17T13:07:27+08:00" content="2017-05-17">
+              2017-05-17
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/游戏/" itemprop="url" rel="index">
+                    <span itemprop="name">游戏</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2017/05/17/通用麻将胡牌算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/17/通用麻将胡牌算法/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>【转载】 <a href="http://www.javashuo.com/content/p-6563355.html" target="_blank" rel="external">Unity3D 通用麻将胡牌算法 - JAVA说</a></p>
+<p>正常的麻将胡牌方式为满足N <em> ABC + M </em>DDD +ＥＥ 的形式，及存在一个对子(EE)，剩余牌均能组成顺子（ABC）或者刻子（DDD）。</p>
+<p>很容易发现必须满足size%3 == 2的形式才可以去计算胡牌。</p>
+<a id="more"></a>
+<p>数据结构的选取：</p>
+<p>麻将有万、饼、条各九种，另外还有东西南北中，春夏秋冬。<br>种类不是很多，一个字节表示就可以了，前四位代表类型，后四位代表值，东西南北中，春夏秋冬可以集中到一种类型中去。</p>
+<p>普通麻将的计算方式：</p>
+<pre><code>1.首先找出所有包含一对的情形，移除对子（注意去重），记下剩余牌的所有集合为Tn;
+2.针对每个Tn中的数组尝试移除一个顺子，成功转到2，失败到3。
+3.针对每个Tn中的数组尝试移除一个刻子（DDD），成功转到2。
+4.若当前的数组的数量变为0，则表示，当前的方案可以胡牌。
+2,3,4可以作为一个check_3n(检测是否满足N * ABC + M *DDD)的函数，递归调用即可。
+</code></pre><p>针对有癞子的麻将（百搭）：</p>
+<p>最简单的办法是尝试将癞子牌变为所有派来进行尝试，不过如果手中有多张癞子牌的话计算量就相当大了，比如3张，则需要计算牌的种类的3次方次，虽然中途可以通过剪枝减少部分计算量，但还是太慢了。<br>针对这种情况我们可以在计算出癞子的数量，如果出现找出顺子或刻子失败，我们则可以用癞子去补，如果失败了，那么当前的方案就不通过。</p>
+<pre><code>1.同样找出所有包含一对的情形，移除对子，移除的时候需要注意更新癞子的数量这里需要注意的是对子是怎么产生的:
+原有的对子
+一个癞子和一普通的组成的对子
+一对癞子
+2.针对每个数组尝试移除一个顺子，成功转到2，如果失败尝试用癞子去补，癞子也不够，转到3。
+3.针对每个数组尝试移除一个刻子（DDD），成功转到2，如果失败尝试用癞子去补，癞子也不够，当前的方案就不通过。
+4.若当前的数组的数量变为0，则表示，当前的方案可以胡牌。
+　　算法理解之后就不难了 , 下面开始详细的阐述了.
+</code></pre><h2 id="1-将麻将抽象为数字"><a href="#1-将麻将抽象为数字" class="headerlink" title="1. 将麻将抽象为数字"></a>1. 将麻将抽象为数字</h2><p>　　数字 {01 ~ 09} 表示  {1 ~ 9} 筒</p>
+<p>　　数字 {11 ~ 19} 表示  {1 ~ 9} 条</p>
+<p>　　数字 {21 ~ 29} 表示  {1 ~ 9} 万</p>
+<p>　　数字 {31 33 35 37 } 表示 { 东 南 西 北 }</p>
+<p>　　数字 {41 43 45} 表示 {中 發 白}</p>
+<p>　　数字10 20 30 32 34 36 40 42 44 46 空出来不代表任何麻将牌 这样设计的好处就是使得能够形成顺子的牌在用数字表示出来的时候刚好也是连着的 , 而不能够形成顺子的牌,在用数字表示的时候并不是顺子 . 便于以后使用代码进行判断</p>
+<h2 id="2-算法的核心流程"><a href="#2-算法的核心流程" class="headerlink" title="2. 算法的核心流程"></a>2. 算法的核心流程</h2><p>　　玩过麻将的都知道麻将玩家手上一般有两种牌 一种是手牌 一种是已经碰牌或者吃牌或者杠牌之后已经明了的牌 . 现在以玩家A为例 , 把牌分的细一点</p>
+<p>　　a. 玩家A的手牌  (数量1 + 3*n n &lt; N , n &lt; 4  )</p>
+<p>　　b. 其他玩家打出来的牌 (数量 1)</p>
+<p>　　c. 玩家A从牌面上取出来的牌 (数量 1)</p>
+<p>　　d. 玩家A吃碰杠的牌 (3<em>n + 4</em>m) </p>
+<p>　　能否胡牌主要是看手牌a 和b/c 的组合能否形成一对加n条顺子和m条克子 . 能则能胡 反则不能.</p>
+<p>　　<img src="http://img.voidcn.com/vcimg/000/006/189/489_43a_ee8.png" alt=""></p>
+<p>　　如上图 用数字表示为 {1,1,2,2,2,3,4,11,12,12,13,13,14,1} 前13张牌为手牌,最后一张二条为玩家A从牌面上取出的牌 </p>
+<p>OK, 现在只需要先取出一对将,然后判断剩下的牌能否全部形成顺子或者克子,现在对牌面按照相对应的数字进行从小到大的排序 . 现在从剩余的牌中最左边的牌开始 , 如果只有一张这样的牌那么这张牌A就只能当作顺子的开头 ; 如果有两张这样的牌 , 因为已经有了一对将而这两张也不能组成克子 , 所以这两张只能当作两个顺子的开头 ; 如果有三张这样的牌 , 可以组成克子 , 但是如果让他组成顺子则要求为 AAABBBCCC 与后面的三张也能组成克子 所以组成顺子或者克子本质是相同的 但是组成克子AAA的通用性要高于组成顺子AAABBBCCC 所以当有三个及以上这样牌的时候优先组成克子AAA ; 如果有四张这样的牌,要能胡牌则需要 AAAABBBBCCCC 或者 AAAABC ,对于是先组一个顺子还是一个克子都会回到上述的情况 . </p>
+<p>(这里没有对七对等各类大胡作出判断)</p>
+<p>步骤一:从上述数组中找到一对做”将”,并从数组中移除 , 这里共有4对牌所以要分成4种情况</p>
+<p>　　1. {1,1}(将牌) , {1,2,2,2,3,4,11,12,12,13,13,14}(余牌)</p>
+<p>　　2. {2,2}(将牌) , {1,1,1,2,3,4,11,12,12,13,13,14}(余牌)</p>
+<p>　　3. {12,12}(将牌) , {1,1,1,2,2,2,3,4,11,13,13,14}(余牌)</p>
+<p>　　4. {13,13}(将牌) , {1,1,1,2,2,2,3,4,11,12,12,14}(余牌)</p>
+<p>　　依次进行步骤二的检查 检查完最后一种情况而没有返回 “能胡牌” 则返回 不能胡牌</p>
+<p>步骤二: 余牌数量为0 则返回 “能胡牌” 否则进入下一步 .</p>
+<p>步骤三: 判断余牌前三张是否相同 相同-&gt; 步骤四 ; 不同 -&gt; 步骤五.</p>
+<p>步骤四: 移除余牌中的前三张牌 , 返回步骤二.</p>
+<p>步骤五: 若余牌中第一个数为N , 则判断是否有N + 1 与 N + 2 同时存在与余牌中 , 有将N , n+1 , n+2 从余牌中移除并返回 步骤二 , 否则返回 步骤一</p>
+<p>演示如下</p>
+<p>　　1. {1,1}(将牌) , {1,2,2,2,3,4,11,12,12,13,13,14}(余牌)</p>
+<p>　　　　步骤二 –&gt; 步骤三 –&gt; 步骤五 == {2,2,4,11,12,12,13,13,14}(余牌) –&gt;</p>
+<p>　　      步骤二 –&gt; 步骤三 –&gt; 步骤五 –&gt; 步骤一</p>
+<p>　　2. {2,2}(将牌) , {1,1,1,2,3,4,11,12,12,13,13,14}(余牌)</p>
+<p>　　　　步骤二 –&gt; 步骤三 –&gt; 步骤四 ==  {2,3,4,11,12,12,13,13,14}(余牌) –&gt;</p>
+<p>　　　　步骤二 –&gt; 步骤三 –&gt; 步骤五 == {11,12,12,13,13,14}(余牌)–&gt;</p>
+<p>　　　　步骤二 –&gt; 步骤三 –&gt; 步骤五 == {12,13,14}(余牌)–&gt;</p>
+<p>　　　　步骤二 –&gt; 步骤三 –&gt; 步骤五 == {}(余牌) –&gt;</p>
+<p>　　　　步骤二   “能胡牌”</p>
+<p>代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span>  <span class="keyword">static</span>  bool  <span class="title">IsCanHU</span><span class="params">(List&lt; <span class="keyword">int</span> &gt; mah,  <span class="keyword">int</span>  ID)</span></span></div><div class="line">&#123;</div><div class="line">     List&lt; <span class="keyword">int</span> &gt; pais =  <span class="keyword">new</span>  List&lt; <span class="keyword">int</span> &gt;(mah);</div><div class="line"> </div><div class="line">     pais.Add(ID);</div><div class="line">     <span class="comment">//只有两张牌</span></div><div class="line">     <span class="keyword">if</span>  (pais.Count == <span class="number">2</span>)</div><div class="line">     &#123;</div><div class="line">         <span class="keyword">return</span>  pais[<span class="number">0</span>] == pais[<span class="number">1</span>];</div><div class="line">     &#125;</div><div class="line"> </div><div class="line">     <span class="comment">//先排序</span></div><div class="line">     pais.Sort();</div><div class="line"> </div><div class="line">     <span class="comment">//依据牌的顺序从左到右依次分出将牌</span></div><div class="line">     <span class="keyword">for</span>  ( <span class="keyword">int</span>  i = <span class="number">0</span>; i &lt; pais.Count; i++)</div><div class="line">     &#123;</div><div class="line">         List&lt; <span class="keyword">int</span> &gt; paiT =  <span class="keyword">new</span>  List&lt; <span class="keyword">int</span> &gt;(pais);</div><div class="line">         List&lt; <span class="keyword">int</span> &gt; ds = pais.FindAll( delegate  ( <span class="keyword">int</span>  d)</div><div class="line">         &#123;</div><div class="line">             <span class="keyword">return</span>  pais[i] == d;</div><div class="line">         &#125;);</div><div class="line"> </div><div class="line">         <span class="comment">//判断是否能做将牌</span></div><div class="line">         <span class="keyword">if</span>  (ds.Count &gt;= <span class="number">2</span>)</div><div class="line">         &#123;</div><div class="line">             <span class="comment">//移除两张将牌</span></div><div class="line">             paiT.Remove(pais[i]);</div><div class="line">             paiT.Remove(pais[i]);</div><div class="line"> </div><div class="line">             <span class="comment">//避免重复运算 将光标移到其他牌上</span></div><div class="line">             i += ds.Count;</div><div class="line"> </div><div class="line">             <span class="keyword">if</span>  (HuPaiPanDin(paiT))</div><div class="line">             &#123;</div><div class="line">                 <span class="keyword">return</span>  <span class="keyword">true</span> ;</div><div class="line">             &#125;</div><div class="line">         &#125;</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">return</span>  <span class="keyword">false</span> ;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">private</span>  <span class="keyword">static</span>  bool  <span class="title">HuPaiPanDin</span><span class="params">(List&lt; <span class="keyword">int</span> &gt; mahs)</span></span></div><div class="line">&#123;</div><div class="line">     <span class="keyword">if</span>  (mahs.Count == <span class="number">0</span>)</div><div class="line">     &#123;</div><div class="line">         <span class="keyword">return</span>  <span class="keyword">true</span> ;</div><div class="line">     &#125;</div><div class="line"> </div><div class="line">     List&lt; <span class="keyword">int</span> &gt; fs = mahs.FindAll( delegate  ( <span class="keyword">int</span>  a)</div><div class="line">     &#123;</div><div class="line">         <span class="keyword">return</span>  mahs[<span class="number">0</span>] == a;</div><div class="line">     &#125;);</div><div class="line"> </div><div class="line">     <span class="comment">//组成克子</span></div><div class="line">     <span class="keyword">if</span>  (fs.Count == <span class="number">3</span>)</div><div class="line">     &#123;</div><div class="line">         mahs.Remove(mahs[<span class="number">0</span>]);</div><div class="line">         mahs.Remove(mahs[<span class="number">0</span>]);</div><div class="line">         mahs.Remove(mahs[<span class="number">0</span>]);</div><div class="line"> </div><div class="line">         <span class="keyword">return</span>  HuPaiPanDin(mahs);</div><div class="line">     &#125;</div><div class="line">     <span class="keyword">else</span></div><div class="line">     &#123;  <span class="comment">//组成顺子</span></div><div class="line">         <span class="keyword">if</span>  (mahs.Contains(mahs[<span class="number">0</span>] + <span class="number">1</span>) &amp;&amp; mahs.Contains(mahs[<span class="number">0</span>] + <span class="number">2</span>))</div><div class="line">         &#123;</div><div class="line">             mahs.Remove(mahs[<span class="number">0</span>] + <span class="number">2</span>);</div><div class="line">             mahs.Remove(mahs[<span class="number">0</span>] + <span class="number">1</span>);</div><div class="line">             mahs.Remove(mahs[<span class="number">0</span>]);</div><div class="line"> </div><div class="line">             <span class="keyword">return</span>  HuPaiPanDin(mahs);</div><div class="line">         &#125;</div><div class="line">         <span class="keyword">return</span>  <span class="keyword">false</span> ;</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="原文链接"><a href="#原文链接" class="headerlink" title="原文链接"></a>原文链接</h2><p><a href="http://www.javashuo.com/content/p-6563355.html" target="_blank" rel="external">Unity3D 通用麻将胡牌算法 - JAVA说</a></p>
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/游戏/" rel="tag">#游戏</a>
+          
+            <a href="/tags/麻将/" rel="tag">#麻将</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/10/28/Shell脚本入门/" rel="next" title="Shell脚本入门">
+                <i class="fa fa-chevron-left"></i> Shell脚本入门
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2017/05/17/通用麻将胡牌算法/"
+     data-title="通用麻将胡牌算法"
+     data-content=""
+     data-url="https://tinyoculus.github.io/2017/05/17/通用麻将胡牌算法/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/17/通用麻将胡牌算法/"
+           data-title="通用麻将胡牌算法" data-url="https://tinyoculus.github.io/2017/05/17/通用麻将胡牌算法/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tiny-photo.jpg"
+               alt="TinyOculus" />
+          <p class="site-author-name" itemprop="name">TinyOculus</p>
+          <p class="site-description motion-element" itemprop="description">Walk steps step by step</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">23</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+          
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">27</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/tinyoculus" target="_blank">
+                  
+                    <i class="fa fa-globe"></i> github
+                  
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc-indicator-top post-toc-indicator">
+            <i class="fa fa-angle-double-up"></i>
+          </div>
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-将麻将抽象为数字"><span class="nav-number">1.</span> <span class="nav-text">1. 将麻将抽象为数字</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-算法的核心流程"><span class="nav-number">2.</span> <span class="nav-text">2. 算法的核心流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原文链接"><span class="nav-number">3.</span> <span class="nav-text">原文链接</span></a></li></ol></div>
+            
+          </div>
+          <div class="post-toc-indicator-bottom post-toc-indicator">
+            <i class="fa fa-angle-double-down"></i>
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+
+  <div class="powered-by">
+  由 <a class="theme-link" href="http://hexo.io">Hexo</a> 强力驱动
+  </div>
+
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">TinyOculus</span> 
+
+  <div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+</div>
+
+
+
+
+      </div>
+    </footer>
+
+    <div class="back-to-top"></div>
+  </div>
+
+  
+
+
+  
+
+
+
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js"></script>
+
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=0.5.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=0.5.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=0.5.0"></script>
+
+
+
+  
+  
+<script type="text/javascript" src="/js/src/scrollspy.js?v=0.5.0"></script>
+
+<script type="text/javascript" id="sidebar.toc.highlight">
+  $(document).ready(function () {
+    var tocSelector = '.post-toc';
+    var $tocSelector = $(tocSelector);
+    var activeCurrentSelector = '.active-current';
+
+    $tocSelector
+      .on('activate.bs.scrollspy', function () {
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+
+        $tocSelector[0].scrollTop = $currentActiveElement.position().top;
+      })
+      .on('clear.bs.scrollspy', function () {
+        removeCurrentActiveClass();
+      });
+
+    function removeCurrentActiveClass () {
+      $(tocSelector + ' ' + activeCurrentSelector)
+        .removeClass(activeCurrentSelector.substring(1));
+    }
+
+    function processTOC () {
+      getTOCMaxHeight();
+      toggleTOCOverflowIndicators();
+    }
+
+    function getTOCMaxHeight () {
+      var height = $('.sidebar').height() -
+                   $tocSelector.position().top -
+                   $('.post-toc-indicator-bottom').height();
+
+      $tocSelector.css('height', height);
+
+      return height;
+    }
+
+    function toggleTOCOverflowIndicators () {
+      tocOverflowIndicator(
+        '.post-toc-indicator-top',
+        $tocSelector.scrollTop() > 0 ? 'show' : 'hide'
+      );
+
+      tocOverflowIndicator(
+        '.post-toc-indicator-bottom',
+        $tocSelector.scrollTop() >= $tocSelector.find('ol').height() - $tocSelector.height() ? 'hide' : 'show'
+      )
+    }
+
+    $(document).on('sidebar.motion.complete', function () {
+      processTOC();
+    });
+
+    $('body').scrollspy({ target: tocSelector });
+    $(window).on('resize', function () {
+      if ( $('.sidebar').hasClass('sidebar-active') ) {
+        processTOC();
+      }
+    });
+
+    onScroll($tocSelector);
+
+    function onScroll (element) {
+      element.on('mousewheel DOMMouseScroll', function (event) {
+          var oe = event.originalEvent;
+          var delta = oe.wheelDelta || -oe.detail;
+
+          this.scrollTop += ( delta < 0 ? 1 : -1 ) * 30;
+          event.preventDefault();
+
+          toggleTOCOverflowIndicators();
+      });
+    }
+
+    function tocOverflowIndicator (indicator, action) {
+      var $indicator = $(indicator);
+      var opacity = action === 'show' ? 1 : 0;
+      $indicator.velocity ?
+        $indicator.velocity('stop').velocity({
+          opacity: opacity
+        }, { duration: 100 }) :
+        $indicator.stop().animate({
+          opacity: opacity
+        }, 100);
+    }
+
+  });
+</script>
+
+<script type="text/javascript" id="sidebar.nav">
+  $(document).ready(function () {
+    var html = $('html');
+    var TAB_ANIMATE_DURATION = 200;
+    var hasVelocity = $.isFunction(html.velocity);
+
+    $('.sidebar-nav li').on('click', function () {
+      var item = $(this);
+      var activeTabClassName = 'sidebar-nav-active';
+      var activePanelClassName = 'sidebar-panel-active';
+      if (item.hasClass(activeTabClassName)) {
+        return;
+      }
+
+      var currentTarget = $('.' + activePanelClassName);
+      var target = $('.' + item.data('target'));
+
+      hasVelocity ?
+        currentTarget.velocity('transition.slideUpOut', TAB_ANIMATE_DURATION, function () {
+          target
+            .velocity('stop')
+            .velocity('transition.slideDownIn', TAB_ANIMATE_DURATION)
+            .addClass(activePanelClassName);
+        }) :
+        currentTarget.animate({ opacity: 0 }, TAB_ANIMATE_DURATION, function () {
+          currentTarget.hide();
+          target
+            .stop()
+            .css({'opacity': 0, 'display': 'block'})
+            .animate({ opacity: 1 }, TAB_ANIMATE_DURATION, function () {
+              currentTarget.removeClass(activePanelClassName);
+              target.addClass(activePanelClassName);
+            });
+        });
+
+      item.siblings().removeClass(activeTabClassName);
+      item.addClass(activeTabClassName);
+    });
+
+    $('.post-toc a').on('click', function (e) {
+      e.preventDefault();
+      var targetSelector = NexT.utils.escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset  + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+
+    // Expand sidebar on post detail page by default, when post has a toc.
+    NexT.motion.middleWares.sidebar = function () {
+      var $tocContent = $('.post-toc-content');
+
+      if (CONFIG.scheme !== 'Pisces' && (CONFIG.sidebar.display === 'post' || CONFIG.sidebar.display === 'always')) {
+        if ($tocContent.length > 0 && $tocContent.html().trim().length > 0) {
+          NexT.utils.displaySidebar();
+        }
+      }
+    };
+  });
+</script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=0.5.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"tinyoculus"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+  
+
+
+
+
+
+  
+  
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for (i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/MathJax.js"></script>
+    <script type="text/javascript" src="http://cdn.staticfile.org/mathjax/2.4.0/config/TeX-AMS-MML_HTMLorMML.js"></script>
+  
+
+
+  
+  
+
+
+</body>
+</html>
